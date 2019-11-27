@@ -1,0 +1,1404 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="//cdn.shopify.com/s/files/1/0273/9847/1715/t/1/assets/theme.scss.css?434" rel="stylesheet" type="text/css" media="all">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<!--[if IE]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+  your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<a class="in-page-link visually-hidden skip-link" href="#MainContent">Ir directamente al contenido</a>
+
+<div id="SearchDrawer" class="search-bar drawer drawer--top" role="dialog" aria-modal="true" aria-label="Buscar">
+  <div class="search-bar__table">
+    <div class="search-bar__table-cell search-bar__form-wrapper">
+      <form class="search search-bar__form" action="/search" method="get" role="search">
+        <input class="search__input search-bar__input" type="search" name="q" value="" placeholder="Buscar"
+               aria-label="Buscar">
+        <button class="search-bar__submit search__submit btn--link" type="submit">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 37 40">
+            <path
+              d="M35.6 36l-9.8-9.8c4.1-5.4 3.6-13.2-1.3-18.1-5.4-5.4-14.2-5.4-19.7 0-5.4 5.4-5.4 14.2 0 19.7 2.6 2.6 6.1 4.1 9.8 4.1 3 0 5.9-1 8.3-2.8l9.8 9.8c.4.4.9.6 1.4.6s1-.2 1.4-.6c.9-.9.9-2.1.1-2.9zm-20.9-8.2c-2.6 0-5.1-1-7-2.9-3.9-3.9-3.9-10.1 0-14C9.6 9 12.2 8 14.7 8s5.1 1 7 2.9c3.9 3.9 3.9 10.1 0 14-1.9 1.9-4.4 2.9-7 2.9z"></path>
+          </svg>
+          <span class="icon__fallback-text">Buscar</span>
+        </button>
+      </form>
+    </div>
+    <div class="search-bar__table-cell text-right">
+      <button type="button" class="btn--link search-bar__close js-drawer-close">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+          <path
+            d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z"
+            class="layer"></path>
+        </svg>
+        <span class="icon__fallback-text">Cerrar</span>
+      </button>
+    </div>
+  </div>
+</div>
+<style data-shopify="">
+
+  .cart-popup {
+    box-shadow: 1px 1px 10px 2px rgba(92, 169, 225, 0.5);
+  }</style>
+<div class="cart-popup-wrapper cart-popup-wrapper--hidden" role="dialog" aria-modal="true"
+     aria-labelledby="CartPopupHeading" data-cart-popup-wrapper="">
+  <div class="cart-popup" data-cart-popup="" tabindex="-1">
+    <h2 id="CartPopupHeading" class="cart-popup__heading">Recién agregado a tu carrito de compra</h2>
+    <button class="cart-popup__close" aria-label="Cerrar" data-cart-popup-close="">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+        <path
+          d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z"
+          class="layer"></path>
+      </svg>
+    </button>
+
+    <div class="cart-popup-item">
+      <div class="cart-popup-item__image-wrapper hide" data-cart-popup-image-wrapper="">
+        <div class="cart-popup-item__image cart-popup-item__image--placeholder" data-cart-popup-image-placeholder="">
+          <div data-placeholder-size=""></div>
+          <div class="placeholder-background placeholder-background--animation"></div>
+        </div>
+      </div>
+      <div class="cart-popup-item__description">
+        <div>
+          <div class="cart-popup-item__title" data-cart-popup-title=""></div>
+          <ul class="product-details" aria-label="Detalles del producto" data-cart-popup-product-details=""></ul>
+        </div>
+        <div class="cart-popup-item__quantity">
+          <span class="visually-hidden" data-cart-popup-quantity-label=""></span>
+          <span aria-hidden="true">Cantidad:</span>
+          <span aria-hidden="true" data-cart-popup-quantity=""></span>
+        </div>
+      </div>
+    </div>
+
+    <a href="/cart" class="cart-popup__cta-link btn btn--secondary-accent">
+      Ver carrito (<span data-cart-popup-cart-quantity=""></span>)
+    </a>
+
+    <div class="cart-popup__dismiss">
+      <button class="cart-popup__dismiss-button text-link text-link--accent" data-cart-popup-dismiss="">
+        Seguir comprando
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="shopify-section-header" class="shopify-section">
+
+  <div data-section-id="header" data-section-type="header-section">
+
+
+    <header class="site-header border-bottom logo--left" role="banner">
+      <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
+
+
+        <div class="grid__item medium-up--one-quarter logo-align--left">
+
+
+          <h1 class="h2 site-header__logo">
+
+
+            <a class="site-header__logo-link" href="/">Tiamiqui</a>
+
+
+          </h1>
+
+        </div>
+
+
+        <nav class="grid__item medium-up--one-half small--hide" id="AccessibleNav" role="navigation">
+
+          <ul class="site-nav list--inline" id="SiteNav">
+
+
+            <li class="site-nav--active">
+              <a href="/" class="site-nav__link site-nav__link--main site-nav__link--active" aria-current="page">
+                <span class="site-nav__label">Inicio</span>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="/blogs/blog" class="site-nav__link site-nav__link--main">
+                <span class="site-nav__label">Blog</span>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="/blogs/news" class="site-nav__link site-nav__link--main">
+                <span class="site-nav__label">Noticias</span>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="https://sp-seller.webkul.com/?sid=16732" class="site-nav__link site-nav__link--main"
+                 aria-describedby="a11y-external-message">
+                <span class="site-nav__label">Mi cuenta</span>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="/pages/notificaciones" class="site-nav__link site-nav__link--main">
+                <span class="site-nav__label">Notificaciones</span>
+              </a>
+            </li>
+
+
+            <li class="site-nav--active">
+              <a href="/" class="site-nav__link site-nav__link--main site-nav__link--active" aria-current="page">
+                <span class="site-nav__label">Moneda</span>
+              </a>
+            </li>
+
+
+            <li><a href="#" onclick="doGTranslate('es|en');return false;" title="English"
+                   class="glink nturl notranslate">English</a></li>
+            <li><a href="#" onclick="doGTranslate('es|es');return false;" title="Spanish"
+                   class="glink nturl notranslate">Spanish</a></li>
+          </ul>
+
+        </nav>
+
+
+        <div class="grid__item medium-up--one-quarter text-right site-header__icons">
+          <div class="site-header__icons-wrapper">
+            <div class="site-header__search site-header__icon">
+
+              <form action="/search" method="get" class="search-header search" role="search">
+                <input class="search-header__input search__input" type="search" name="q" placeholder="Buscar"
+                       aria-label="Buscar">
+                <button class="search-header__submit search__submit btn--link site-header__icon" type="submit">
+                  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search"
+                       viewBox="0 0 37 40">
+                    <path
+                      d="M35.6 36l-9.8-9.8c4.1-5.4 3.6-13.2-1.3-18.1-5.4-5.4-14.2-5.4-19.7 0-5.4 5.4-5.4 14.2 0 19.7 2.6 2.6 6.1 4.1 9.8 4.1 3 0 5.9-1 8.3-2.8l9.8 9.8c.4.4.9.6 1.4.6s1-.2 1.4-.6c.9-.9.9-2.1.1-2.9zm-20.9-8.2c-2.6 0-5.1-1-7-2.9-3.9-3.9-3.9-10.1 0-14C9.6 9 12.2 8 14.7 8s5.1 1 7 2.9c3.9 3.9 3.9 10.1 0 14-1.9 1.9-4.4 2.9-7 2.9z"></path>
+                  </svg>
+                  <span class="icon__fallback-text">Buscar</span>
+                </button>
+              </form>
+
+            </div>
+
+            <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top"
+                    aria-controls="SearchDrawer" aria-expanded="false" aria-haspopup="dialog">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search"
+                   viewBox="0 0 37 40">
+                <path
+                  d="M35.6 36l-9.8-9.8c4.1-5.4 3.6-13.2-1.3-18.1-5.4-5.4-14.2-5.4-19.7 0-5.4 5.4-5.4 14.2 0 19.7 2.6 2.6 6.1 4.1 9.8 4.1 3 0 5.9-1 8.3-2.8l9.8 9.8c.4.4.9.6 1.4.6s1-.2 1.4-.6c.9-.9.9-2.1.1-2.9zm-20.9-8.2c-2.6 0-5.1-1-7-2.9-3.9-3.9-3.9-10.1 0-14C9.6 9 12.2 8 14.7 8s5.1 1 7 2.9c3.9 3.9 3.9 10.1 0 14-1.9 1.9-4.4 2.9-7 2.9z"></path>
+              </svg>
+              <span class="icon__fallback-text">Buscar</span>
+            </button>
+
+
+            <a href="/cart" class="site-header__icon site-header__cart">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cart" viewBox="0 0 37 40">
+                <path
+                  d="M36.5 34.8L33.3 8h-5.9C26.7 3.9 23 .8 18.5.8S10.3 3.9 9.6 8H3.7L.5 34.8c-.2 1.5.4 2.4.9 3 .5.5 1.4 1.2 3.1 1.2h28c1.3 0 2.4-.4 3.1-1.3.7-.7 1-1.8.9-2.9zm-18-30c2.2 0 4.1 1.4 4.7 3.2h-9.5c.7-1.9 2.6-3.2 4.8-3.2zM4.5 35l2.8-23h2.2v3c0 1.1.9 2 2 2s2-.9 2-2v-3h10v3c0 1.1.9 2 2 2s2-.9 2-2v-3h2.2l2.8 23h-28z"></path>
+              </svg>
+              <span class="icon__fallback-text">Carrito</span>
+              <div id="CartCount" class="site-header__cart-count hide" data-cart-count-bubble="">
+                <span data-cart-count="">0</span>
+                <span class="icon__fallback-text medium-up--hide">artículos</span>
+              </div>
+            </a>
+
+
+            <button type="button"
+                    class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open"
+                    aria-controls="MobileNav" aria-expanded="false" aria-label="Menú">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger"
+                   viewBox="0 0 37 40">
+                <path
+                  d="M33.5 25h-30c-1.1 0-2-.9-2-2s.9-2 2-2h30c1.1 0 2 .9 2 2s-.9 2-2 2zm0-11.5h-30c-1.1 0-2-.9-2-2s.9-2 2-2h30c1.1 0 2 .9 2 2s-.9 2-2 2zm0 23h-30c-1.1 0-2-.9-2-2s.9-2 2-2h30c1.1 0 2 .9 2 2s-.9 2-2 2z"></path>
+              </svg>
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+                <path
+                  d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z"
+                  class="layer"></path>
+              </svg>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+      <nav class="mobile-nav-wrapper medium-up--hide" role="navigation">
+        <ul id="MobileNav" class="mobile-nav">
+
+          <li class="mobile-nav__item border-bottom">
+
+            <a href="/" class="mobile-nav__link mobile-nav__link--active" aria-current="page">
+              <span class="mobile-nav__label">Inicio</span>
+            </a>
+
+          </li>
+
+          <li class="mobile-nav__item border-bottom">
+
+            <a href="/blogs/blog" class="mobile-nav__link">
+              <span class="mobile-nav__label">Blog</span>
+            </a>
+
+          </li>
+
+          <li class="mobile-nav__item border-bottom">
+
+            <a href="/blogs/news" class="mobile-nav__link">
+              <span class="mobile-nav__label">Noticias</span>
+            </a>
+
+          </li>
+
+          <li class="mobile-nav__item border-bottom">
+
+            <a href="https://sp-seller.webkul.com/?sid=16732" class="mobile-nav__link"
+               aria-describedby="a11y-external-message">
+              <span class="mobile-nav__label">Mi cuenta</span>
+            </a>
+
+          </li>
+
+          <li class="mobile-nav__item border-bottom">
+
+            <a href="/pages/notificaciones" class="mobile-nav__link">
+              <span class="mobile-nav__label">Notificaciones</span>
+            </a>
+
+          </li>
+
+          <li class="mobile-nav__item">
+
+            <a href="/" class="mobile-nav__link mobile-nav__link--active" aria-current="page">
+              <span class="mobile-nav__label">Moneda</span>
+            </a>
+
+          </li>
+
+
+          <li class="mobile-nav__item border-top">
+            <a href="#" onclick="doGTranslate('es|en');return false;" title="English"
+               class="glink nturl notranslate mobile-nav__link mobile-nav__link--active">English</a>
+          </li>
+          <li class="mobile-nav__item border-top">
+            <a href="#" onclick="doGTranslate('es|es');return false;" title="Spanish"
+               class="glink nturl notranslate mobile-nav__link mobile-nav__link--active">Spanish</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+  </div>
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "name": "Tiamiqui",
+      "sameAs": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "url": "https:\/\/tiamiqui.myshopify.com"
+    }
+  </script>
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Tiamiqui",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/tiamiqui.myshopify.com\/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "https:\/\/tiamiqui.myshopify.com"
+    }
+  </script>
+
+
+</div>
+
+<div class="page-container drawer-page-content" id="PageContainer">
+
+  <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
+    <!-- BEGIN content_for_index -->
+    <div id="shopify-section-1573618631071" class="shopify-section index-section index-section--flush">
+      <div data-section-id="1573618631071" data-section-type="hero-section">
+        <div class="hero hero--medium hero-1573618631071 hero__overlay box ratio-container js lazyloaded"
+             id="Hero-1573618631071" data-layout="full_width" data-bgset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_180x.jpg?v=1573951282 180w 120h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_360x.jpg?v=1573951282 360w 240h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_540x.jpg?v=1573951282 540w 361h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_720x.jpg?v=1573951282 720w 481h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_900x.jpg?v=1573951282 900w 601h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1080x.jpg?v=1573951282 1080w 721h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1296x.jpg?v=1573951282 1296w 865h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1512x.jpg?v=1573951282 1512w 1010h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1728x.jpg?v=1573951282 1728w 1154h,
+
+
+
+
+
+
+
+
+
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min.jpg?v=1573951282 1920w 1282h"
+             data-parent-fit="cover"
+             style="background-position: center center; background-image: url(&quot;https://cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min.jpg?v=1573951282&quot;);">
+          <div class="hero__inner">
+            <div class="page-width text-center"><h2 class="h1 mega-title mega-title--large">Bienvenidos...</h2>
+              <div class="rte-setting mega-subtitle mega-subtitle--large"><p>a este gran mercado y comunidad virtuales
+                donde la compra de una artesanía es toda una experiencia cultural. Nuestro objetivo es valorizar la
+                producción artesanal en México, destacando la tradición, el significado y el proceso de elaboración de
+                cada artesanía.</p></div>
+              <a href="/collections/all" class="btn hero__btn" aria-label="Ver Artesanías: Catálogo">Ver Artesanías</a>
+            </div>
+          </div>
+          <picture style="display: none;">
+            <source
+              data-srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_180x.jpg?v=1573951282 180w 120h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_360x.jpg?v=1573951282 360w 240h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_540x.jpg?v=1573951282 540w 361h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_720x.jpg?v=1573951282 720w 481h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_900x.jpg?v=1573951282 900w 601h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1080x.jpg?v=1573951282 1080w 721h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1296x.jpg?v=1573951282 1296w 865h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1512x.jpg?v=1573951282 1512w 1010h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1728x.jpg?v=1573951282 1728w 1154h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min.jpg?v=1573951282 1920w 1282h"
+              sizes="1920px"
+              srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_180x.jpg?v=1573951282 180w 120h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_360x.jpg?v=1573951282 360w 240h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_540x.jpg?v=1573951282 540w 361h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_720x.jpg?v=1573951282 720w 481h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_900x.jpg?v=1573951282 900w 601h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1080x.jpg?v=1573951282 1080w 721h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1296x.jpg?v=1573951282 1296w 865h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1512x.jpg?v=1573951282 1512w 1010h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_1728x.jpg?v=1573951282 1728w 1154h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min.jpg?v=1573951282 1920w 1282h">
+            <img alt="" class="lazyautosizes lazyloaded" data-sizes="auto" data-parent-fit="cover" sizes="1920px">
+          </picture>
+        </div>
+        <noscript>
+          <div class="hero hero--medium hero__overlay"
+               style="background-image: url('//cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_2048x.jpg?v=1573951282'); background-position: center center;"></div>
+        </noscript>
+      </div>
+
+
+    </div>
+    <div id="shopify-section-1574535424541" class="shopify-section more-square-gallery-flex">
+      <div class="no_view_mobile">
+
+        <div class="section-header text-center">
+          <h2>Mapa de nuestros artesanos</h2>
+        </div>
+
+        <style>
+          @media screen and (max-width: 600px) {
+            .no_view_mobile {
+              display: none;
+            }
+          }
+
+          @media (min-width: 600px) and (max-width: 1075px) {
+            .mainContainer2 {
+              display: none !important;
+            }
+
+            .mainContainer {
+              display: none !important;
+            }
+
+            .navigation {
+              width: 250px;
+            }
+          }
+
+          @media (min-width: 1076px) and (max-width: 1385px) {
+            .mainContainer2 {
+              display: none !important;
+            }
+
+            .mainContainer3 {
+              display: none !important;
+            }
+
+            .navigation {
+              width: 250px;
+            }
+          }
+
+
+          @media screen and (min-width: 1386px) {
+            .mainContainer {
+              display: none !important;
+            }
+
+            .mainContainer3 {
+              display: none !important;
+            }
+
+            .navigation {
+              width: 350px;
+            }
+          }
+
+          .mainContainer2 {
+            display: flex;
+          }
+
+          .mainmenu {
+            height: 480px;
+            box-shadow: 1px 1px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+
+          /* reset our lists to remove bullet points and padding */
+          .mainmenu,
+          .submenu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+          }
+
+          /* make ALL links (main and submenu) have padding and background color */
+          .mainmenu li {
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 1.4rem 0;
+          }
+
+          /* add hover behaviour */
+          .mainmenu li:hover {
+            background-color: #f1f1f1;
+            -webkit-transition: all 0.5s ease-out;
+          }
+
+
+          /* when hovering over a .mainmenu item,
+        display the submenu inside it.
+        we're changing the submenu's max-height from 0 to 200px;
+      */
+
+          .mainmenu li:hover .submenu {
+            display: block;
+            max-height: 200px;
+          }
+
+          /* this is the initial state of all submenus.
+        we set it to max-height: 0, and hide the overflowed content.
+      */
+          .submenu {
+            overflow: hidden;
+            max-height: 0;
+            -webkit-transition: all 0.5s ease-out;
+          }
+
+          .mainContainer, .mainContainer3 {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+          }
+        </style>
+        <div class="mainContainer">
+          <div class="navigation">
+            <ul class="mainmenu">
+              <li class="map-link" onclick="changeMap('general', 'frameMap')">Mapa General</li>
+              <li class="map-link" onclick="changeMap('three', 'frameMap')">Tipo de artesanía</li>
+              <li class="map-link" onclick="changeMap('two', 'frameMap')">Lugares de Elaboración de artesanías</li>
+              <li class="map-link" onclick="changeMap('one', 'frameMap')">Artesanos</li>
+              <li class="map-link" onclick="changeMap('four', 'frameMap')">Grupo Étnico</li>
+            </ul>
+          </div>
+          <div class="mapContainer">
+            <iframe id="frameMap" src="https://www.google.com/maps/d/u/1/embed?mid=1_ZS7r-y_ZwKApIJTiuPKWSwy00QXJK3t"
+                    width="940" height="680"></iframe>
+          </div>
+        </div>
+        <div class="mainContainer3">
+          <div class="navigation">
+            <ul class="mainmenu">
+              <li class="map-link" onclick="changeMap('general', 'frameMap3'">Mapa General</li>
+              <li class="map-link" onclick="changeMap('three', 'frameMap3')">Tipo de artesanía</li>
+              <li class="map-link" onclick="changeMap('two', 'frameMap3')">Lugares de Elaboración de artesanías</li>
+              <li class="map-link" onclick="changeMap('one', 'frameMap3')">Artesanos</li>
+              <li class="map-link" onclick="changeMap('four', 'frameMap3')">Grupo Étnico</li>
+            </ul>
+          </div>
+          <div class="mapContainer">
+            <iframe id="frameMap3" src="https://www.google.com/maps/d/u/1/embed?mid=1_ZS7r-y_ZwKApIJTiuPKWSwy00QXJK3t"
+                    width="580" height="680"></iframe>
+          </div>
+        </div>
+        <div class="mainContainer2">
+          <div class="navigation">
+            <ul class="mainmenu">
+              <li class="map-link" onclick="changeMap('general', 'frameMap2')">Mapa General</li>
+              <li class="map-link" onclick="changeMap('three', 'frameMap2')">Tipo de artesanía</li>
+              <li class="map-link" onclick="changeMap('two', 'frameMap2')">Lugares de Elaboración de artesanías</li>
+              <li class="map-link" onclick="changeMap('one', 'frameMap2')">Artesanos</li>
+              <li class="map-link" onclick="changeMap('four', 'frameMap2')">Grupo Étnico</li>
+            </ul>
+          </div>
+          <div class="mapContainer">
+            <iframe id="frameMap2" src="https://www.google.com/maps/d/u/1/embed?mid=1_ZS7r-y_ZwKApIJTiuPKWSwy00QXJK3t"
+                    width="1640" height="900"></iframe>
+          </div>
+        </div>
+
+        <script>
+          let maps = {
+            general: '1_ZS7r-y_ZwKApIJTiuPKWSwy00QXJK3t',
+            one: '1E3SqpQiRTnLNSLQ6Bbdi1q4mY0XXNTm6',
+            two: '161uYLBMZl4uexjA3QI7Wn3ye5cJfTegM',
+            three: '1vLzqPV8Ala_7doIyGUsZRv8TCNs6cfIl',
+            four: '17qhQA1LE2Xd_bxRdVFwlM7lwBSkU0SYi',
+          }
+
+          function changeMap (map, selector) {
+            let mapElement = document.querySelector('#' + selector)
+            mapElement.src = 'https://www.google.com/maps/d/u/0/embed?mid=' + maps[map]
+          }
+        </script>
+      </div>
+
+    </div>
+    <div id="shopify-section-1573620821388" class="shopify-section index-section index-section--flush">
+      <div data-section-id="1573620821388" data-section-type="hero-section">
+        <div class="hero hero--medium hero-1573620821388 hero__overlay box ratio-container js lazyloaded"
+             id="Hero-1573620821388" data-layout="full_width" data-bgset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_180x.jpg?v=1573951329 180w 118h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_360x.jpg?v=1573951329 360w 236h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_540x.jpg?v=1573951329 540w 354h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_720x.jpg?v=1573951329 720w 473h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_900x.jpg?v=1573951329 900w 591h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1080x.jpg?v=1573951329 1080w 709h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1296x.jpg?v=1573951329 1296w 851h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1512x.jpg?v=1573951329 1512w 992h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1728x.jpg?v=1573951329 1728w 1134h,
+
+
+
+
+
+
+
+
+
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min.jpg?v=1573951329 1920w 1260h"
+             data-parent-fit="cover"
+             style="background-position: center bottom; background-image: url(&quot;https://cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min.jpg?v=1573951329&quot;);">
+          <div class="hero__inner">
+            <div class="page-width text-center"><h2 class="h1 mega-title">¿Eres artesano?</h2>
+              <div class="rte-setting mega-subtitle"><p>Regístrate y comienza a vender tus artesanías. Nosotros te
+                decimos paso a paso cómo hacerlo. ¡Es muy fácil!</p></div>
+              <a href="https://sp-seller.webkul.com/index.php?p=signup" class="btn hero__btn" aria-label="Vende aquí"
+                 aria-describedby="a11y-external-message">Vende aquí</a></div>
+          </div>
+          <picture style="display: none;">
+            <source
+              data-srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_180x.jpg?v=1573951329 180w 118h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_360x.jpg?v=1573951329 360w 236h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_540x.jpg?v=1573951329 540w 354h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_720x.jpg?v=1573951329 720w 473h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_900x.jpg?v=1573951329 900w 591h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1080x.jpg?v=1573951329 1080w 709h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1296x.jpg?v=1573951329 1296w 851h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1512x.jpg?v=1573951329 1512w 992h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1728x.jpg?v=1573951329 1728w 1134h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min.jpg?v=1573951329 1920w 1260h"
+              sizes="1920px"
+              srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_180x.jpg?v=1573951329 180w 118h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_360x.jpg?v=1573951329 360w 236h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_540x.jpg?v=1573951329 540w 354h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_720x.jpg?v=1573951329 720w 473h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_900x.jpg?v=1573951329 900w 591h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1080x.jpg?v=1573951329 1080w 709h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1296x.jpg?v=1573951329 1296w 851h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1512x.jpg?v=1573951329 1512w 992h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_1728x.jpg?v=1573951329 1728w 1134h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min.jpg?v=1573951329 1920w 1260h">
+            <img alt="" class="lazyautosizes lazyloaded" data-sizes="auto" data-parent-fit="cover" sizes="1920px">
+          </picture>
+        </div>
+        <noscript>
+          <div class="hero hero--medium hero__overlay"
+               style="background-image: url('//cdn.shopify.com/s/files/1/0273/9847/1715/files/pottery-807419_1920-min_2048x.jpg?v=1573951329'); background-position: center bottom;"></div>
+        </noscript>
+      </div>
+
+
+    </div>
+    <div id="shopify-section-1574133712965" class="shopify-section index-section">
+      <div class="page-width">
+
+        <div class="section-header text-center">
+          <h2>Nuestros artesanos</h2>
+        </div>
+
+
+        <div class="grid grid--uniform grid--flush-bottom">
+
+
+          <div class="grid__item medium-up--one-third text-center">
+
+
+            <style>#TextColumnImage-1574133712965-0 {
+              max-width: 229.99999999999997px;
+              max-height: 345px;
+            }
+
+            #TextColumnImageWrapper-1574133712965-0 {
+              max-width: 229.99999999999997px;
+            }
+            </style>
+
+            <div id="TextColumnImageWrapper-1574133712965-0" class="feature-row__image-wrapper js">
+              <div style="padding-top:150.0%;">
+                <img id="TextColumnImage-1574133712965-0" class="feature-row__image lazyautosizes lazyloaded"
+                     src="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_300x300.jpg?v=1574133774"
+                     data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                     data-aspectratio="0.6666666666666666" data-sizes="auto" alt=""
+                     data-srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_180x.jpg?v=1574133774 180w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_360x.jpg?v=1574133774 360w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_540x.jpg?v=1574133774 540w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_720x.jpg?v=1574133774 720w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_900x.jpg?v=1574133774 900w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_1080x.jpg?v=1574133774 1080w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_1296x.jpg?v=1574133774 1296w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_1512x.jpg?v=1574133774 1512w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_1728x.jpg?v=1574133774 1728w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_2048x.jpg?v=1574133774 2048w"
+                     sizes="230px"
+                     srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_180x.jpg?v=1574133774 180w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_360x.jpg?v=1574133774 360w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_540x.jpg?v=1574133774 540w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_720x.jpg?v=1574133774 720w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_900x.jpg?v=1574133774 900w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_1080x.jpg?v=1574133774 1080w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_1296x.jpg?v=1574133774 1296w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_1512x.jpg?v=1574133774 1512w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_1728x.jpg?v=1574133774 1728w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_2048x.jpg?v=1574133774 2048w">
+              </div>
+            </div>
+            <noscript>
+              <p>
+                <img
+                  src="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Simona_Gomez_Lopez_480x480@2x.jpg?v=1574133774"
+                  alt="" class="feature-row__image"/>
+              </p>
+            </noscript>
+
+
+            <h3 class="h4">Simona Gómez López</h3>
+
+
+            <a href="https://tiamiqui.myshopify.com/pages/seller-profile?tienda_de_simona_g%C3%B3mez_l%C3%B3pez"
+               class="btn btn--secondary btn--small" aria-label="Ver artesanías">Ver artesanías</a>
+
+          </div>
+
+
+          <div class="grid__item medium-up--one-third text-center">
+
+
+            <style>#TextColumnImage-1574133712965-1 {
+              max-width: 519.5294117647059px;
+              max-height: 345px;
+            }
+
+            #TextColumnImageWrapper-1574133712965-1 {
+              max-width: 519.5294117647059px;
+            }
+            </style>
+
+            <div id="TextColumnImageWrapper-1574133712965-1" class="feature-row__image-wrapper js">
+              <div style="padding-top:66.40625%;">
+                <img id="TextColumnImage-1574133712965-1" class="feature-row__image lazyautosizes lazyloaded"
+                     src="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_300x300.jpg?v=1574133882"
+                     data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                     data-aspectratio="1.5058823529411764" data-sizes="auto" alt="Mario Chávez Gutiérrez"
+                     data-srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_180x.jpg?v=1574133882 180w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_360x.jpg?v=1574133882 360w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_540x.jpg?v=1574133882 540w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_720x.jpg?v=1574133882 720w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_900x.jpg?v=1574133882 900w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_1080x.jpg?v=1574133882 1080w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_1296x.jpg?v=1574133882 1296w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_1512x.jpg?v=1574133882 1512w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_1728x.jpg?v=1574133882 1728w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_2048x.jpg?v=1574133882 2048w"
+                     sizes="343px"
+                     srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_180x.jpg?v=1574133882 180w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_360x.jpg?v=1574133882 360w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_540x.jpg?v=1574133882 540w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_720x.jpg?v=1574133882 720w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_900x.jpg?v=1574133882 900w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_1080x.jpg?v=1574133882 1080w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_1296x.jpg?v=1574133882 1296w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_1512x.jpg?v=1574133882 1512w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_1728x.jpg?v=1574133882 1728w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_2048x.jpg?v=1574133882 2048w">
+              </div>
+            </div>
+            <noscript>
+              <p>
+                <img
+                  src="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Mario_Chavez_Gutierrez_480x480@2x.jpg?v=1574133882"
+                  alt="Mario Chávez Gutiérrez" class="feature-row__image"/>
+              </p>
+            </noscript>
+
+
+            <h3 class="h4">Mario Chávez Gutiérrez</h3>
+
+
+            <a href="https://tiamiqui.myshopify.com/pages/seller-profile?tienda_de_mario_ch%C3%A1vez_guti%C3%A9rrez"
+               class="btn btn--secondary btn--small" aria-label="Ver artesanías">Ver artesanías</a>
+
+          </div>
+
+
+          <div class="grid__item medium-up--one-third text-center">
+
+
+            <style>#TextColumnImage-1574133712965-2 {
+              max-width: 229.99999999999997px;
+              max-height: 345px;
+            }
+
+            #TextColumnImageWrapper-1574133712965-2 {
+              max-width: 229.99999999999997px;
+            }
+            </style>
+
+            <div id="TextColumnImageWrapper-1574133712965-2" class="feature-row__image-wrapper js">
+              <div style="padding-top:150.0%;">
+                <img id="TextColumnImage-1574133712965-2" class="feature-row__image lazyautosizes lazyloaded"
+                     src="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_300x300.jpg?v=1574133931"
+                     data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                     data-aspectratio="0.6666666666666666" data-sizes="auto" alt=""
+                     data-srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_180x.jpg?v=1574133931 180w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_360x.jpg?v=1574133931 360w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_540x.jpg?v=1574133931 540w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_720x.jpg?v=1574133931 720w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_900x.jpg?v=1574133931 900w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_1080x.jpg?v=1574133931 1080w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_1296x.jpg?v=1574133931 1296w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_1512x.jpg?v=1574133931 1512w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_1728x.jpg?v=1574133931 1728w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_2048x.jpg?v=1574133931 2048w"
+                     sizes="230px"
+                     srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_180x.jpg?v=1574133931 180w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_360x.jpg?v=1574133931 360w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_540x.jpg?v=1574133931 540w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_720x.jpg?v=1574133931 720w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_900x.jpg?v=1574133931 900w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_1080x.jpg?v=1574133931 1080w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_1296x.jpg?v=1574133931 1296w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_1512x.jpg?v=1574133931 1512w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_1728x.jpg?v=1574133931 1728w, //cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_2048x.jpg?v=1574133931 2048w">
+              </div>
+            </div>
+            <noscript>
+              <p>
+                <img
+                  src="//cdn.shopify.com/s/files/1/0273/9847/1715/files/Marisol_Bazan_Fernandez_480x480@2x.jpg?v=1574133931"
+                  alt="" class="feature-row__image"/>
+              </p>
+            </noscript>
+
+
+            <h3 class="h4">Marisol Bazán Fernández</h3>
+
+
+            <a href="https://tiamiqui.myshopify.com/pages/seller-profile?tienda_de_marisol_baz%C3%A1n_fern%C3%A1ndez"
+               class="btn btn--secondary btn--small" aria-label="Ver Artesanías">Ver Artesanías</a>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <div id="shopify-section-1573621031481" class="shopify-section index-section index-section--flush">
+      <div data-section-id="1573621031481" data-section-type="hero-section">
+        <div class="hero hero--small hero-1573621031481 hero__overlay box ratio-container js lazyloaded"
+             id="Hero-1573621031481" data-layout="full_width" data-bgset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_180x.jpg?v=1573951372 180w 135h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_360x.jpg?v=1573951372 360w 270h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_540x.jpg?v=1573951372 540w 405h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_720x.jpg?v=1573951372 720w 540h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_900x.jpg?v=1573951372 900w 675h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1080x.jpg?v=1573951372 1080w 810h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1296x.jpg?v=1573951372 1296w 972h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1512x.jpg?v=1573951372 1512w 1134h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1728x.jpg?v=1573951372 1728w 1296h,
+
+
+
+
+
+
+
+
+
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min.jpg?v=1573951372 1920w 1440h"
+             data-parent-fit="cover"
+             style="background-position: center center; background-image: url(&quot;https://cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min.jpg?v=1573951372&quot;);">
+          <div class="hero__inner">
+            <div class="page-width text-center"><h2 class="h1 mega-title">Foro</h2>
+              <div class="rte-setting mega-subtitle"><p>Interactúa con nuestros artesanos. Pregunta, contesta o
+                simplemente comenta algo.</p></div>
+              <a href="/blogs/news" class="btn hero__btn" aria-label="Empieza aquí: News">Empieza aquí</a></div>
+          </div>
+          <picture style="display: none;">
+            <source
+              data-srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_180x.jpg?v=1573951372 180w 135h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_360x.jpg?v=1573951372 360w 270h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_540x.jpg?v=1573951372 540w 405h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_720x.jpg?v=1573951372 720w 540h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_900x.jpg?v=1573951372 900w 675h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1080x.jpg?v=1573951372 1080w 810h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1296x.jpg?v=1573951372 1296w 972h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1512x.jpg?v=1573951372 1512w 1134h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1728x.jpg?v=1573951372 1728w 1296h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min.jpg?v=1573951372 1920w 1440h"
+              sizes="1920px"
+              srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_180x.jpg?v=1573951372 180w 135h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_360x.jpg?v=1573951372 360w 270h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_540x.jpg?v=1573951372 540w 405h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_720x.jpg?v=1573951372 720w 540h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_900x.jpg?v=1573951372 900w 675h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1080x.jpg?v=1573951372 1080w 810h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1296x.jpg?v=1573951372 1296w 972h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1512x.jpg?v=1573951372 1512w 1134h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_1728x.jpg?v=1573951372 1728w 1296h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min.jpg?v=1573951372 1920w 1440h">
+            <img alt="" class="lazyautosizes lazyloaded" data-sizes="auto" data-parent-fit="cover" sizes="1920px">
+          </picture>
+        </div>
+        <noscript>
+          <div class="hero hero--small hero__overlay"
+               style="background-image: url('//cdn.shopify.com/s/files/1/0273/9847/1715/files/mexico-1311551_1920-min_2048x.jpg?v=1573951372'); background-position: center center;"></div>
+        </noscript>
+      </div>
+
+
+    </div>
+    <div id="shopify-section-1573621524354" class="shopify-section index-section">
+      <div class="page-width" data-section-id="1573621524354" data-section-type="quotes">
+
+        <div class="section-header text-center">
+          <h2>Testimonios</h2>
+        </div>
+
+
+        <div class="quotes-wrapper">
+          <div class="quotes-slider slick-initialized slick-slider" id="Quotes-1573621524354" data-count="3">
+
+            <div class="slick-list draggable">
+              <div class="slick-track" style="opacity: 1; width: 1092px; transform: translate3d(0px, 0px, 0px);">
+                <div class="quotes-slide--1573621524354-1 slick-slide slick-current slick-active" data-slick-index="0"
+                     aria-hidden="false" role="tabpanel" id="slickSlide00" aria-labelledby="slickDot00" tabindex="-1"
+                     style="width: 364px;">
+                  <blockquote class="quotes-slider__text text-center">
+                    <span class="quote-icon"><svg aria-hidden="true" focusable="false" role="presentation"
+                                                  class="icon icon-quote" viewBox="0 0 41 35"><path
+                      d="M10.208 17.711h6.124v16.332H0V21.684C0 8.184 5.444.956 16.332 0v6.125c-4.083 1.14-6.124 4.414-6.124 9.82v1.766zm24.498 0h6.124v16.332H24.498V21.684C24.498 8.184 29.942.956 40.83 0v6.125c-4.083 1.14-6.124 4.414-6.124 9.82v1.766z"
+                      fill="#000" fill-rule="evenodd"></path></svg></span>
+
+                    <div class="rte-setting rte"><p>Al principio creí que sería más difícil empezar a vender mis
+                      artesanías en internet porque no conocía qué se tenía que hacer, pero mi sobrino me ayudó a
+                      registrarme y me ahora es bueno que los artesanos podemos vender directamente sin necesidad de un
+                      intermediario</p></div>
+
+
+                    <cite>Simona Gómez López</cite>
+
+                  </blockquote>
+                </div>
+                <div class="quotes-slide--1573621524354-0 slick-slide slick-active" data-slick-index="1"
+                     aria-hidden="false" role="tabpanel" id="slickSlide001" aria-labelledby="slickDot00" tabindex="-1"
+                     style="width: 364px;">
+                  <blockquote class="quotes-slider__text text-center">
+                    <span class="quote-icon"><svg aria-hidden="true" focusable="false" role="presentation"
+                                                  class="icon icon-quote" viewBox="0 0 41 35"><path
+                      d="M10.208 17.711h6.124v16.332H0V21.684C0 8.184 5.444.956 16.332 0v6.125c-4.083 1.14-6.124 4.414-6.124 9.82v1.766zm24.498 0h6.124v16.332H24.498V21.684C24.498 8.184 29.942.956 40.83 0v6.125c-4.083 1.14-6.124 4.414-6.124 9.82v1.766z"
+                      fill="#000" fill-rule="evenodd"></path></svg></span>
+
+                    <div class="rte-setting rte"><p>Al registrarme en esta tienda tengo más público para mis artesanías
+                      y sí he conseguido aumentar mis ventas, además de que es muy fácil darse de alta, subir mis
+                      productos y empezar a vender</p></div>
+
+
+                    <cite>Marisol Bazán Fernández</cite>
+
+                  </blockquote>
+                </div>
+                <div class="quotes-slide--1573621524354-2 slick-slide slick-active" data-slick-index="2"
+                     aria-hidden="false" role="tabpanel" id="slickSlide002" aria-labelledby="slickDot00" tabindex="-1"
+                     style="width: 364px;">
+                  <blockquote class="quotes-slider__text text-center">
+                    <span class="quote-icon"><svg aria-hidden="true" focusable="false" role="presentation"
+                                                  class="icon icon-quote" viewBox="0 0 41 35"><path
+                      d="M10.208 17.711h6.124v16.332H0V21.684C0 8.184 5.444.956 16.332 0v6.125c-4.083 1.14-6.124 4.414-6.124 9.82v1.766zm24.498 0h6.124v16.332H24.498V21.684C24.498 8.184 29.942.956 40.83 0v6.125c-4.083 1.14-6.124 4.414-6.124 9.82v1.766z"
+                      fill="#000" fill-rule="evenodd"></path></svg></span>
+
+                    <div class="rte-setting rte"><p>Es como si estuviera en el tianguis, pero ahora a través de mi
+                      teléfono ya que también puedo platicar con los posibles clientes y explicarles todo el trabajo que
+                      me cuesta llegar a tener lista una artesanía de calidad. Yo pienso que a ellos eso les interesa,
+                      porque es la forma de que valoren nuestro trabajo</p></div>
+
+
+                    <cite>Mario Chávez Gutiérrez</cite>
+
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <div id="shopify-section-1573621149523" class="shopify-section index-section index-section--flush">
+      <div data-section-id="1573621149523" data-section-type="hero-section">
+        <div class="hero hero--large hero-1573621149523 hero__overlay box ratio-container js lazyloaded"
+             id="Hero-1573621149523" data-layout="full_width" data-bgset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_180x.jpg?v=1573951424 180w 120h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_360x.jpg?v=1573951424 360w 240h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_540x.jpg?v=1573951424 540w 360h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_720x.jpg?v=1573951424 720w 480h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_900x.jpg?v=1573951424 900w 600h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1080x.jpg?v=1573951424 1080w 720h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1296x.jpg?v=1573951424 1296w 864h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1512x.jpg?v=1573951424 1512w 1008h,
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1728x.jpg?v=1573951424 1728w 1152h,
+
+
+
+
+
+
+
+
+
+    //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min.jpg?v=1573951424 1920w 1280h"
+             data-parent-fit="cover"
+             style="background-position: center center; background-image: url(&quot;https://cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min.jpg?v=1573951424&quot;);">
+          <div class="hero__inner">
+            <div class="page-width text-center"><h2 class="h1 mega-title">Financiamiento Artesanal</h2>
+              <div class="rte-setting mega-subtitle"><p>Conoce los proyectos artesanales que requieren financiamiento, o
+                bien inscribe un nuevo proyecto</p></div>
+              <a href="https://www.kickstarter.com/" class="btn hero__btn" aria-label="Ver proyectos"
+                 aria-describedby="a11y-external-message">Ver proyectos</a></div>
+          </div>
+          <picture style="display: none;">
+            <source
+              data-srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_180x.jpg?v=1573951424 180w 120h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_360x.jpg?v=1573951424 360w 240h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_540x.jpg?v=1573951424 540w 360h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_720x.jpg?v=1573951424 720w 480h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_900x.jpg?v=1573951424 900w 600h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1080x.jpg?v=1573951424 1080w 720h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1296x.jpg?v=1573951424 1296w 864h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1512x.jpg?v=1573951424 1512w 1008h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1728x.jpg?v=1573951424 1728w 1152h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min.jpg?v=1573951424 1920w 1280h"
+              sizes="1920px"
+              srcset="//cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_180x.jpg?v=1573951424 180w 120h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_360x.jpg?v=1573951424 360w 240h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_540x.jpg?v=1573951424 540w 360h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_720x.jpg?v=1573951424 720w 480h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_900x.jpg?v=1573951424 900w 600h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1080x.jpg?v=1573951424 1080w 720h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1296x.jpg?v=1573951424 1296w 864h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1512x.jpg?v=1573951424 1512w 1008h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_1728x.jpg?v=1573951424 1728w 1152h, //cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min.jpg?v=1573951424 1920w 1280h">
+            <img alt="" class="lazyautosizes lazyloaded" data-sizes="auto" data-parent-fit="cover" sizes="1920px">
+          </picture>
+        </div>
+        <noscript>
+          <div class="hero hero--large hero__overlay"
+               style="background-image: url('//cdn.shopify.com/s/files/1/0273/9847/1715/files/crafts-4371679_1920-min_2048x.jpg?v=1573951424'); background-position: center center;"></div>
+        </noscript>
+      </div>
+
+
+    </div>
+    <div id="shopify-section-1573619779754" class="shopify-section index-section index-section--flush">
+      <div class="newsletter-section index-section--newsletter-background">
+        <div class="page-width">
+          <div class="section-header text-center">
+
+            <h2 class="h2">Suscríbete</h2>
+
+
+            <div class="rte"><p>Recibe&nbsp;</p></div>
+
+          </div>
+          <form method="post" action="/contact#Contact_1573619779754" id="Contact_1573619779754" accept-charset="UTF-8"
+                class="contact-form form-single-field" novalidate="novalidate"><input type="hidden" name="form_type"
+                                                                                      value="customer"><input
+            type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="input-group ">
+              <input type="email" name="contact[email]" id="Contact_1573619779754-email" class="input-group__field"
+                     value="" placeholder="Dirección de correo electrónico" aria-label="Dirección de correo electrónico"
+                     aria-required="true" autocorrect="off" autocapitalize="off">
+              <span class="input-group__btn">
+          <button type="submit" class="btn" name="commit" id="Subscribe">
+            <span>Suscribirse</span>
+          </button>
+        </span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+    </div><!-- END content_for_index -->
+
+  </main>
+
+  <div id="shopify-section-footer" class="shopify-section">
+    <style>
+      .site-footer__hr {
+        border-bottom: 1px solid #dcdcdc;
+      }
+
+      .site-footer p,
+      .site-footer__linklist-item a,
+      .site-footer__rte a,
+      .site-footer h4,
+      .site-footer small,
+      .site-footer__copyright-content a,
+      .site-footer__newsletter-error {
+        color: #3d4246;
+      }
+
+      .site-footer {
+        color: #3d4246;
+        background-color: #f5f5f5;
+      }
+
+      .site-footer__rte a {
+        border-bottom: 1px solid #3d4246;
+      }
+
+      .site-footer__rte a:hover,
+      .site-footer__linklist-item a:hover,
+      .site-footer__copyright-content a:hover {
+        color: #61696f;
+        border-bottom: 1px solid #61696f;
+      }
+    </style>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="page-width">
+        <div class="site-footer__content">
+          <div class="site-footer__item
+
+                    site-footer__item--one-quarter
+                    ">
+            <div class="site-footer__item-inner site-footer__item-inner--link_list"><p class="h4">Acerca de</p>
+              <ul class="site-footer__linklist
+                            ">
+                <li class="site-footer__linklist-item">
+                  <a href="/pages/nosotros">
+                    Nosotros
+                  </a>
+                </li>
+                <li class="site-footer__linklist-item">
+                  <a href="/pages/equipo">
+                    Equipo
+                  </a>
+                </li>
+                <li class="site-footer__linklist-item">
+                  <a href="/pages/soporte">
+                    Soporte
+                  </a>
+                </li>
+                <li class="site-footer__linklist-item">
+                  <a href="/pages/colabora-con-nosotros">
+                    Colabora con nosotros
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="site-footer__item
+
+                    site-footer__item--one-quarter
+                    ">
+            <div class="site-footer__item-inner site-footer__item-inner--link_list"><p class="h4">Ayuda</p>
+              <ul class="site-footer__linklist
+                            "></ul>
+            </div>
+          </div>
+          <div class="site-footer__item
+
+                    site-footer__item--one-quarter
+                    ">
+            <div class="site-footer__item-inner site-footer__item-inner--link_list"><p class="h4">Formas de pago</p>
+              <ul class="site-footer__linklist
+                            "></ul>
+            </div>
+          </div>
+          <div class="site-footer__item
+
+                    site-footer__item--one-quarter
+                    ">
+            <div class="site-footer__item-inner site-footer__item-inner--link_list"><p class="h4">Gestión de envíos</p>
+              <ul class="site-footer__linklist
+                            "></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="site-footer__hr">
+
+      <div class="page-width">
+        <div class="grid grid--no-gutters small--text-center">
+          <div class="grid__item one-half small--one-whole">
+            <div class="small--hide">
+              <small class="site-footer__copyright-content">© 2019, <a href="/" title="">Tiamiqui</a></small>
+              <small class="site-footer__copyright-content site-footer__copyright-content-powered-by"><a target="_blank"
+                                                                                                         rel="nofollow noopener"
+                                                                                                         href="http://es.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore"
+                                                                                                         aria-describedby="a11y-new-window-external-message">http://es.shopify.com</a></small>
+            </div>
+          </div>
+
+          <div class="grid__item one-half small--one-whole">
+
+          </div>
+          <div class="grid__item medium-up--hide">
+            <small class="site-footer__copyright-content">© 2019, <a href="/" title="">Tiamiqui</a></small>
+            <small class="site-footer__copyright-content site-footer__copyright-content--powered-by"><a target="_blank"
+                                                                                                        rel="nofollow noopener"
+                                                                                                        href="http://es.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore"
+                                                                                                        aria-describedby="a11y-new-window-external-message">http://es.shopify.com</a></small>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </div>
+
+  <div id="slideshow-info" class="visually-hidden" aria-hidden="true">Utiliza las flechas izquierda/derecha para navegar
+    por la presentación o deslízate hacia la izquierda/derecha si usas un dispositivo móvil
+  </div>
+
+</div>
+
+<ul hidden="">
+  <li id="a11y-refresh-page-message">Al seleccionar una opción se actualiza toda la página.</li>
+  <li id="a11y-selection-message">Presiona la tecla de espacio y luego las teclas de flecha para seleccionar una
+    opción.
+  </li>
+</ul>
+
+
+<div id="gtranslate_wrapper" style="display: block; position: absolute; top: 5%; right: 8%; z-index: 2147483647;">
+  <!-- GTranslate: https://gtranslate.io/ -->
+  <a href="#" onclick="doGTranslate('es|en');return false;" title="English" class="glink nturl notranslate">English</a>
+  <a href="#" onclick="doGTranslate('es|es');return false;" title="Spanish" class="glink nturl notranslate">Spanish</a>
+  <style type="text/css">
+    #goog-gt-tt {
+      display: none !important;
+    }
+
+    .goog-te-banner-frame {
+      display: none !important;
+    }
+
+    .goog-te-menu-value:hover {
+      text-decoration: none !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    #google_translate_element2 {
+      display: none !important;
+    }
+  </style>
+
+  <div id="google_translate_element2">
+    <div class="skiptranslate goog-te-gadget" dir="ltr" style="">
+      <div id=":0.targetLanguage"><select class="goog-te-combo" aria-label="Language Translate Widget">
+        <option value="">Select Language</option>
+        <option value="en">English</option>
+        <option value="af">Afrikaans</option>
+        <option value="sq">Albanian</option>
+        <option value="am">Amharic</option>
+        <option value="ar">Arabic</option>
+        <option value="hy">Armenian</option>
+        <option value="az">Azerbaijani</option>
+        <option value="eu">Basque</option>
+        <option value="be">Belarusian</option>
+        <option value="bn">Bengali</option>
+        <option value="bs">Bosnian</option>
+        <option value="bg">Bulgarian</option>
+        <option value="ca">Catalan</option>
+        <option value="ceb">Cebuano</option>
+        <option value="ny">Chichewa</option>
+        <option value="zh-CN">Chinese (Simplified)</option>
+        <option value="zh-TW">Chinese (Traditional)</option>
+        <option value="co">Corsican</option>
+        <option value="hr">Croatian</option>
+        <option value="cs">Czech</option>
+        <option value="da">Danish</option>
+        <option value="nl">Dutch</option>
+        <option value="eo">Esperanto</option>
+        <option value="et">Estonian</option>
+        <option value="tl">Filipino</option>
+        <option value="fi">Finnish</option>
+        <option value="fr">French</option>
+        <option value="fy">Frisian</option>
+        <option value="gl">Galician</option>
+        <option value="ka">Georgian</option>
+        <option value="de">German</option>
+        <option value="el">Greek</option>
+        <option value="gu">Gujarati</option>
+        <option value="ht">Haitian Creole</option>
+        <option value="ha">Hausa</option>
+        <option value="haw">Hawaiian</option>
+        <option value="iw">Hebrew</option>
+        <option value="hi">Hindi</option>
+        <option value="hmn">Hmong</option>
+        <option value="hu">Hungarian</option>
+        <option value="is">Icelandic</option>
+        <option value="ig">Igbo</option>
+        <option value="id">Indonesian</option>
+        <option value="ga">Irish</option>
+        <option value="it">Italian</option>
+        <option value="ja">Japanese</option>
+        <option value="jw">Javanese</option>
+        <option value="kn">Kannada</option>
+        <option value="kk">Kazakh</option>
+        <option value="km">Khmer</option>
+        <option value="ko">Korean</option>
+        <option value="ku">Kurdish (Kurmanji)</option>
+        <option value="ky">Kyrgyz</option>
+        <option value="lo">Lao</option>
+        <option value="la">Latin</option>
+        <option value="lv">Latvian</option>
+        <option value="lt">Lithuanian</option>
+        <option value="lb">Luxembourgish</option>
+        <option value="mk">Macedonian</option>
+        <option value="mg">Malagasy</option>
+        <option value="ms">Malay</option>
+        <option value="ml">Malayalam</option>
+        <option value="mt">Maltese</option>
+        <option value="mi">Maori</option>
+        <option value="mr">Marathi</option>
+        <option value="mn">Mongolian</option>
+        <option value="my">Myanmar (Burmese)</option>
+        <option value="ne">Nepali</option>
+        <option value="no">Norwegian</option>
+        <option value="ps">Pashto</option>
+        <option value="fa">Persian</option>
+        <option value="pl">Polish</option>
+        <option value="pt">Portuguese</option>
+        <option value="pa">Punjabi</option>
+        <option value="ro">Romanian</option>
+        <option value="ru">Russian</option>
+        <option value="sm">Samoan</option>
+        <option value="gd">Scots Gaelic</option>
+        <option value="sr">Serbian</option>
+        <option value="st">Sesotho</option>
+        <option value="sn">Shona</option>
+        <option value="sd">Sindhi</option>
+        <option value="si">Sinhala</option>
+        <option value="sk">Slovak</option>
+        <option value="sl">Slovenian</option>
+        <option value="so">Somali</option>
+        <option value="su">Sundanese</option>
+        <option value="sw">Swahili</option>
+        <option value="sv">Swedish</option>
+        <option value="tg">Tajik</option>
+        <option value="ta">Tamil</option>
+        <option value="te">Telugu</option>
+        <option value="th">Thai</option>
+        <option value="tr">Turkish</option>
+        <option value="uk">Ukrainian</option>
+        <option value="ur">Urdu</option>
+        <option value="uz">Uzbek</option>
+        <option value="vi">Vietnamese</option>
+        <option value="cy">Welsh</option>
+        <option value="xh">Xhosa</option>
+        <option value="yi">Yiddish</option>
+        <option value="yo">Yoruba</option>
+        <option value="zu">Zulu</option>
+      </select></div>
+      Powered by <span style="white-space:nowrap"><a class="goog-logo-link" href="https://translate.google.com"
+                                                     target="_blank" aria-describedby="a11y-new-window-external-message"
+                                                     rel="noopener"><img
+      src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_42x16dp.png" width="37px"
+      height="14px" style="padding-right: 3px" alt="Google Translate">Translate</a></span></div>
+  </div>
+  <script type="text/javascript">
+    function googleTranslateElementInit2 () {
+      new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        autoDisplay: false
+      }, 'google_translate_element2')
+    }
+  </script>
+  <script type="text/javascript"
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+
+
+  <script type="text/javascript">
+    if (typeof GTranslateGetCurrentLang != 'function')function GTranslateGetCurrentLang () {
+      var keyValue = document.cookie.match('(^|;) ?googtrans=([^;]*)(;|$)')
+      return keyValue ? keyValue[2].split('/')[2] : null
+    }
+
+    function GTranslateFireEvent (element, event) {
+      try {
+        if (document.createEventObject) {
+          var evt = document.createEventObject()
+          element.fireEvent('on' + event, evt)
+        } else {
+          var evt = document.createEvent('HTMLEvents')
+          evt.initEvent(event, true, true)
+          element.dispatchEvent(evt)
+        }
+      } catch (e) {}
+    }
+
+    function doGTranslate (lang_pair) {
+      if (lang_pair.value) lang_pair = lang_pair.value
+      if (lang_pair == '') return
+      var lang = lang_pair.split('|')[1]
+      if (GTranslateGetCurrentLang() == null && lang == lang_pair.split('|')[0]) return
+      if (typeof ga != 'undefined') {ga('send', 'event', 'GTranslate', lang, location.hostname + location.pathname + location.search)} else {if (typeof _gaq != 'undefined') _gaq.push(['_trackEvent', 'GTranslate', lang, location.hostname + location.pathname + location.search])}
+      var teCombo
+      var sel = document.getElementsByTagName('select')
+      for (var i = 0; i < sel.length; i++) if (/goog-te-combo/.test(sel[i].className)) teCombo = sel[i]
+      if (document.getElementById('google_translate_element2') == null || document.getElementById('google_translate_element2').innerHTML.length == 0 || teCombo.length == 0 || teCombo.innerHTML.length == 0) {setTimeout(function () {doGTranslate(lang_pair)}, 500)} else {
+        teCombo.value = lang
+        GTranslateFireEvent(teCombo, 'change')
+        GTranslateFireEvent(teCombo, 'change')
+      }
+    }
+  </script>
+  <style type="text/css">a.glink {
+    text-decoration: none;
+  }
+
+  a.glink span {
+    margin-right: 3px;
+    font-size: 10px;
+    vertical-align: middle;
+  }
+
+  a.glink img {
+    vertical-align: middle;
+    display: inline;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  a.glink:hover img {
+    opacity: 1;
+  }
+  </style>
+</div>
+<script>setTimeout(function () {if (typeof window.gtranslate_installed == 'undefined' && typeof console != 'undefined') console.log('To uninstall GTranslate properly please follow the instructions on https://docs.gtranslate.io/how-tos/how-to-remove-gtranslate-app-from-shopify')}, 4000)</script>
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr">
+  <div style="padding: 8px;">
+    <div>
+      <div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20"
+                             height="20" alt="Google Translate"></div>
+    </div>
+  </div>
+  <div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div>
+  <div class="middle" style="padding: 8px;">
+    <div class="original-text"></div>
+  </div>
+  <div class="bottom" style="padding: 8px;">
+    <div class="activity-links"><span class="activity-link">Contribute a better translation</span><span
+      class="activity-link"></span></div>
+    <div class="started-activity-container">
+      <hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
+      <div class="activity-root"></div>
+    </div>
+  </div>
+  <div class="status-message" style="display: none;"></div>
+</div>
+
+
+<div class="goog-te-spinner-pos">
+  <div class="goog-te-spinner-animation">
+    <svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66">
+      <circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33"
+              r="30"></circle>
+    </svg>
+  </div>
+</div>
+<iframe title="Shopify Admin Bar" id="admin-bar-iframe"
+        src="https://tiamiqui.myshopify.com/admin/bar?action_name=index&amp;path=%2F&amp;storefront_locale=es"
+        sandbox="allow-same-origin allow-scripts"
+        style="position: fixed; bottom: 0; left: 0; z-index: 2147483647; width: 80px; height: 80px; border: none;"></iframe>
+<ul hidden="true">
+  <li id="a11y-new-window-message">Abre en una nueva ventana.</li>
+  <li id="a11y-external-message">Abre sitio externo.</li>
+  <li id="a11y-new-window-external-message">Abre sitio externo externo en una nueva ventana.</li>
+</ul>
+
+
+<script src="js/vendor/modernizr-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () { ga.q.push(arguments) }
+  ga.q = []
+  ga.l = +new Date
+  ga('create', 'UA-XXXXX-Y', 'auto')
+  ga('set', 'transport', 'beacon')
+  ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
