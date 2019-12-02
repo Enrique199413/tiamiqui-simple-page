@@ -6,14 +6,13 @@
   <title></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-  <link href="//cdn.shopify.com/s/files/1/0273/9847/1715/t/1/assets/theme.scss.css?434" rel="stylesheet" type="text/css" media="all">
+  <link href="//cdn.shopify.com/s/files/1/0273/9847/1715/t/1/assets/theme.scss.css?434" rel="stylesheet" type="text/css"
+        media="all">
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -408,69 +407,27 @@
     </div>
     <div id="shopify-section-1574535424541" class="shopify-section more-square-gallery-flex">
       <div class="no_view_mobile">
-
-        <div class="section-header text-center">
-          <h2>Mapa de nuestros artesanos</h2>
-        </div>
-
         <style>
-          @media screen and (max-width: 600px) {
-            .no_view_mobile {
-              display: none;
-            }
+          /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+          #map {
+            height: 100vh;
+            width: 100%;
           }
 
-          @media (min-width: 600px) and (max-width: 1075px) {
-            .mainContainer2 {
-              display: none !important;
-            }
-
-            .mainContainer {
-              display: none !important;
-            }
-
-            .navigation {
-              width: 250px;
-            }
-          }
-
-          @media (min-width: 1076px) and (max-width: 1385px) {
-            .mainContainer2 {
-              display: none !important;
-            }
-
-            .mainContainer3 {
-              display: none !important;
-            }
-
-            .navigation {
-              width: 250px;
-            }
-          }
-
-
-          @media screen and (min-width: 1386px) {
-            .mainContainer {
-              display: none !important;
-            }
-
-            .mainContainer3 {
-              display: none !important;
-            }
-
-            .navigation {
-              width: 350px;
-            }
-          }
-
-          .mainContainer2 {
+          .mainContainerWith {
             display: flex;
+          }
+
+          .menu {
+            position: fixed;
+            z-index: 100000;
           }
 
           .mainmenu {
-            height: 480px;
-            box-shadow: 1px 1px 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             display: flex;
+            background: white;
             flex-direction: column;
             justify-content: space-between;
           }
@@ -488,9 +445,8 @@
             display: block;
             text-decoration: none;
             cursor: pointer;
-            text-align: center;
             font-size: 1.2rem;
-            padding: 1.4rem 0;
+            padding: 1.4rem 0.5rem;
           }
 
           /* add hover behaviour */
@@ -499,92 +455,196 @@
             -webkit-transition: all 0.5s ease-out;
           }
 
-
-          /* when hovering over a .mainmenu item,
-        display the submenu inside it.
-        we're changing the submenu's max-height from 0 to 200px;
-      */
-
           .mainmenu li:hover .submenu {
             display: block;
             max-height: 200px;
           }
 
-          /* this is the initial state of all submenus.
-        we set it to max-height: 0, and hide the overflowed content.
-      */
           .submenu {
             overflow: hidden;
             max-height: 0;
             -webkit-transition: all 0.5s ease-out;
           }
 
-          .mainContainer, .mainContainer3 {
+          .mainContainer {
             display: flex;
             width: 100%;
             justify-content: center;
           }
-        </style>
-        <div class="mainContainer">
-          <div class="navigation">
-            <ul class="mainmenu">
-              <li class="map-link" onclick="changeMap('general', 'frameMap')">Mapa General</li>
-              <li class="map-link" onclick="changeMap('three', 'frameMap')">Tipo de artesanía</li>
-              <li class="map-link" onclick="changeMap('two', 'frameMap')">Lugares de Elaboración de artesanías</li>
-              <li class="map-link" onclick="changeMap('one', 'frameMap')">Artesanos</li>
-              <li class="map-link" onclick="changeMap('four', 'frameMap')">Grupo Étnico</li>
-            </ul>
-          </div>
-          <div class="mapContainer">
-            <iframe id="frameMap" src="https://www.google.com/maps/d/u/1/embed?mid=1_ZS7r-y_ZwKApIJTiuPKWSwy00QXJK3t"
-                    width="940" height="680"></iframe>
-          </div>
-        </div>
-        <div class="mainContainer3">
-          <div class="navigation">
-            <ul class="mainmenu">
-              <li class="map-link" onclick="changeMap('general', 'frameMap3'">Mapa General</li>
-              <li class="map-link" onclick="changeMap('three', 'frameMap3')">Tipo de artesanía</li>
-              <li class="map-link" onclick="changeMap('two', 'frameMap3')">Lugares de Elaboración de artesanías</li>
-              <li class="map-link" onclick="changeMap('one', 'frameMap3')">Artesanos</li>
-              <li class="map-link" onclick="changeMap('four', 'frameMap3')">Grupo Étnico</li>
-            </ul>
-          </div>
-          <div class="mapContainer">
-            <iframe id="frameMap3" src="https://www.google.com/maps/d/u/1/embed?mid=1_ZS7r-y_ZwKApIJTiuPKWSwy00QXJK3t"
-                    width="580" height="680"></iframe>
-          </div>
-        </div>
-        <div class="mainContainer2">
-          <div class="navigation">
-            <ul class="mainmenu">
-              <li class="map-link" onclick="changeMap('general', 'frameMap2')">Mapa General</li>
-              <li class="map-link" onclick="changeMap('three', 'frameMap2')">Tipo de artesanía</li>
-              <li class="map-link" onclick="changeMap('two', 'frameMap2')">Lugares de Elaboración de artesanías</li>
-              <li class="map-link" onclick="changeMap('one', 'frameMap2')">Artesanos</li>
-              <li class="map-link" onclick="changeMap('four', 'frameMap2')">Grupo Étnico</li>
-            </ul>
-          </div>
-          <div class="mapContainer">
-            <iframe id="frameMap2" src="https://www.google.com/maps/d/u/1/embed?mid=1_ZS7r-y_ZwKApIJTiuPKWSwy00QXJK3t"
-                    width="1640" height="900"></iframe>
-          </div>
-        </div>
 
-        <script>
-          let maps = {
-            general: '1_ZS7r-y_ZwKApIJTiuPKWSwy00QXJK3t',
-            one: '1E3SqpQiRTnLNSLQ6Bbdi1q4mY0XXNTm6',
-            two: '161uYLBMZl4uexjA3QI7Wn3ye5cJfTegM',
-            three: '1vLzqPV8Ala_7doIyGUsZRv8TCNs6cfIl',
-            four: '17qhQA1LE2Xd_bxRdVFwlM7lwBSkU0SYi',
+          .infoContainer {
+            display: none;
+            flex-direction: column;
+            justify-items: center;
+            justify-content: space-between;
+            position: fixed;
+            z-index: 100002;
+            background: white;
+            width: 18rem;
+            height: auto;
+            margin-left: 5rem;
+            padding: 1rem 1rem 1rem;
+            min-height: 35rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            border-radius: 5px;
           }
 
-          function changeMap (map, selector) {
-            let mapElement = document.querySelector('#' + selector)
-            mapElement.src = 'https://www.google.com/maps/d/u/0/embed?mid=' + maps[map]
+          #back {
+            cursor: pointer;
+          }
+
+          .footerInfoContainer {
+            display: flex;
+            justify-content: space-between;
+          }
+        </style>
+        <div class="section-header text-center">
+          <h2>Mapa de nuestros artesanos</h2>
+        </div>
+        <div class="mainContainerWith">
+          <div class="infoContainer" id="secondModal">
+            <div id="informationAboutMarker">
+
+            </div>
+            <div class="footerInfoContainer">
+              <div id="buttonForSell">
+                <a href="https://tiamiqui.myshopify.com/products/macetas-en-forma-de-palomas">Comprar</a>
+              </div>
+              <div id="back" onclick="closeSecondModal()">Regresar</div>
+            </div>
+          </div>
+          <div class="menu">
+            <div class="mainContainer">
+              <div class="navigation">
+                <ul class="mainmenu">
+                  <li class="map-link" onclick="loadNewMap('general')">Mapa General</li>
+                  <!--                  <li class="map-link" onclick="getData('')">Tipo de artesanía</li>-->
+                  <li class="map-link" onclick="loadNewMap('Lugar de elaboración de artesanía')">Lugares de Elaboración de
+                    artesanías
+                  </li>
+                  <li class="map-link" onclick="loadNewMap('Artesanos')">Artesanos</li>
+                  <!--                  <li class="map-link" onclick="getData('')">Grupo Étnico</li>-->
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="map"></div>
+        </div>
+        <script src="js/vendor/airtable.browser.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+          let map
+          let markers = []
+          let currentResults
+          let currentMarket
+          let MEXICO_CENTER = { lat: 23.634501, lng: -102.552784 }
+          let MEXICO_BOUNDS = {
+            north: 32.718653,
+            south: -86.5887,
+            west: 14.3895,
+            east: -118.6523,
+          }
+
+          initMap = () => {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: MEXICO_CENTER,
+              zoom: 6,
+              disableDefaultUI: true
+            })
+            getInfoAndDrawMap('general')
+          }
+
+          setMapOnAll = (map) => {
+            for (let i = 0; i < markers.length; i++) {
+              markers[i].setMap(map);
+            }
+          }
+
+          clearMarkers = () => {
+            markers = [];
+            currentMarket = undefined
+          }
+
+          loadNewMap = (newMap) => {
+            closeSecondModal();
+            map.setZoom(6);
+            map.setCenter(MEXICO_CENTER);
+            setMapOnAll(null);
+            getInfoAndDrawMap(newMap);
+          }
+
+          closeSecondModal = () => {
+            document.querySelector('#secondModal').style.display = 'none';
+            map.setZoom(6);
+            map.setCenter(MEXICO_CENTER);
+          }
+
+          drawMarkersOnMap = (id, lat, long) => {
+            let marker = new google.maps.Marker({
+              position: {
+                lat: lat,
+                lng: long,
+              },
+              animation: google.maps.Animation.DROP,
+              title: id,
+              map: map
+            })
+            markers.push(marker);
+
+            marker.addListener('click', event => {
+              document.querySelector('#secondModal').style.display = 'flex';
+              map.setZoom(9);
+              currentMarket = marker
+              map.setCenter(currentMarket.getPosition());
+              getInformation(currentMarket.title)
+            })
+          }
+
+          getInfoAndDrawMap = (nameOfAirtableTable) => {
+            getData(nameOfAirtableTable).then(results => {
+              currentResults = results
+              currentResults.forEach((record) => {
+                const place = record.fields;
+                drawMarkersOnMap(record.id, parseFloat(place['Latitud']), parseFloat(place['Longitud']))
+              })
+            });
+          }
+
+          getInformation = (id) => {
+            let currentDataAboutClick = currentResults.filter(result => result.id === id)[0].fields
+            let artesaniasDelArtesanoHTML = ''
+            if (currentDataAboutClick.tipo === 2) {
+              getData('ArtesaniaArtesano').then(results => {
+                results.forEach(artesania => {
+                  let indexArtesania = artesania.fields['Artesano'].indexOf(id)
+                  if (indexArtesania >= 0) {
+                    artesaniasDelArtesanoHTML += `
+                    <div class="artesania">${artesania.fields['Artesania']}</div>
+                    `
+                  }
+                })
+                document.querySelector('#artesaniasArtesano').innerHTML = artesaniasDelArtesanoHTML
+              })
+              console.log(artesaniasDelArtesanoHTML)
+              document.querySelector('#informationAboutMarker').innerHTML = `
+              <div class="titleAboutMarker">${currentDataAboutClick['Nombre']}</div>
+              <div id="artesaniasArtesano"></div>
+              `;
+            } else {
+
+              console.log(currentDataAboutClick)
+              document.querySelector('#informationAboutMarker').innerHTML = `
+              <div class="titleAboutMarker">${currentDataAboutClick['Localidad']}</div>
+              <div class="stateAboutMarker">${currentDataAboutClick['Estado']}</div>
+              <div class="artisansAboutMarker">${currentDataAboutClick['Artesanias']}</div>
+              <div class="artisansAboutMarker">${currentDataAboutClick['Artesanias']}</div>
+              `;
+            }
           }
         </script>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDosgQ2FYyGTB6t-25_I9cjHxS-AtcgqRw&callback=initMap"
+          async defer></script>
       </div>
 
     </div>
@@ -1371,10 +1431,6 @@
     </svg>
   </div>
 </div>
-<iframe title="Shopify Admin Bar" id="admin-bar-iframe"
-        src="https://tiamiqui.myshopify.com/admin/bar?action_name=index&amp;path=%2F&amp;storefront_locale=es"
-        sandbox="allow-same-origin allow-scripts"
-        style="position: fixed; bottom: 0; left: 0; z-index: 2147483647; width: 80px; height: 80px; border: none;"></iframe>
 <ul hidden="true">
   <li id="a11y-new-window-message">Abre en una nueva ventana.</li>
   <li id="a11y-external-message">Abre sitio externo.</li>
@@ -1386,8 +1442,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+<script src="js/vendor/airtable.browser.js"></script>
 <script src="js/plugins.js"></script>
-<script src="js/main.js"></script>
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>
