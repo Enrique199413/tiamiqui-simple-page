@@ -73,7 +73,7 @@ server or a CDN that hosts content that may not be present on every page of
 your site, for example) then you can queue up a domain name to be prefetched.
 
 ```html
-<link rel="dns-prefetch" href="//example.com">
+<link rel="dns-prefetch" href="https://tiamiqui.myshopify.com//example.com">
 <link rel="dns-prefetch" href="https://ajax.googleapis.com">
 ```
 
@@ -88,7 +88,7 @@ act on them ASAP.
 Amazon S3:
 
 ```html
-<link rel="dns-prefetch" href="//s3.amazonaws.com">
+<link rel="dns-prefetch" href="https://tiamiqui.myshopify.com//s3.amazonaws.com">
 ```
 
 Google APIs:
@@ -100,8 +100,8 @@ Google APIs:
 Microsoft Ajax Content Delivery Network:
 
 ```html
-<link rel="dns-prefetch" href="//ajax.microsoft.com">
-<link rel="dns-prefetch" href="//ajax.aspnetcdn.com">
+<link rel="dns-prefetch" href="https://tiamiqui.myshopify.com//ajax.microsoft.com">
+<link rel="dns-prefetch" href="https://tiamiqui.myshopify.com//ajax.aspnetcdn.com">
 ```
 
 ### Further reading about DNS prefetching
@@ -399,7 +399,7 @@ Have an RSS feed? Link to it here. Want to [learn how to write an RSS feed from
 scratch](http://www.rssboard.org/rss-specification)?
 
 ```html
-<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://tiamiqui.myshopify.com/rss.xml">
 ```
 
 ### Atom
@@ -409,7 +409,7 @@ addition to it. [See what Atom's all
 about](https://en.wikipedia.org/wiki/Atom_(Web_standard)).
 
 ```html
-<link rel="alternate" type="application/atom+xml" title="Atom" href="/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="https://tiamiqui.myshopify.com/atom.xml">
 ```
 
 ### Pingbacks
