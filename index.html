@@ -408,8 +408,22 @@
     <div id="shopify-section-1574535424541" class="shopify-section more-square-gallery-flex">
       <div class="no_view_mobile">
         <style>
-          /* Always set the map height explicitly to define the size of the div
-           * element that contains the map. */
+          @media screen and (max-width: 600px) {
+            .mainContainer {
+              display: flex !important;
+              flex-direction: column;
+            }
+            .mainmenu {
+              height: 13rem !important;
+            }
+            .mainmenu li {
+              padding: 0.45rem 0 !important;
+            }
+
+            .menu, .infoContainer {
+              position: absolute !important;
+            }
+          }
           #map {
             height: 100vh;
             width: 100%;
