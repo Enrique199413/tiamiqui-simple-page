@@ -512,6 +512,10 @@
             padding: 1.25rem;
           }
 
+          .card-img-overlay-countries {
+            padding: 1rem 1rem 0rem 1rem;
+          }
+
 
           #lugar, #artesanos {
             display: none;
@@ -528,6 +532,9 @@
             background-clip: border-box;
             border-radius: .25rem;
           }
+          .row-country {
+            padding: 1rem 0;
+          }
         </style>
         <div class="section-header text-center">
           <h2>Mapa de nuestros artesanos</h2>
@@ -542,6 +549,11 @@
                 <a href="https://tiamiqui.myshopify.com/products/macetas-en-forma-de-palomas">Comprar</a>
               </div>
               <div id="back" onclick="closeSecondModal()">Regresar</div>
+            </div>
+          </div>
+          <div class="infoContainer" id="thirdModal">
+            <div id="informationAboutState">
+
             </div>
           </div>
           <div class="menu">
@@ -622,6 +634,7 @@
 
           closeSecondModal = () => {
             document.querySelector('#secondModal').style.display = 'none'
+            document.querySelector('#lugar').style.display = 'none'
             map.setZoom(zoom)
             map.setCenter(MEXICO_CENTER)
           }
@@ -640,6 +653,7 @@
 
             marker.addListener('click', event => {
               document.querySelector('#secondModal').style.display = 'flex'
+              document.querySelector('#thirdModal').style.display = 'none'
               map.setZoom(9)
               currentMarket = marker
               map.setCenter(currentMarket.getPosition())
@@ -684,9 +698,32 @@
 
           getPinFromData = (id, latitud, longitud, nameState) => {
             currentNameState = nameState
+            let contentList = ''
             let statesApply = currentResults.filter(currentResult => {
-              return currentResult.fields['Estado'].indexOf(id) >= 0
+              if (currentResult.fields['Estado'].indexOf(id) >= 0) {
+                contentList += `<div class="row-country">${currentResult.fields.Localidad}</div>`
+                return currentResult
+              }
             })
+            console.log(statesApply)
+            document.querySelector('#thirdModal').style.display = 'block'
+            document.querySelector('#thirdModal').innerHTML = `
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-lg-6 col-md-8">
+                    <div class="card shadow">
+                      <div class="card-img-overlay-countries">
+                        <h5 class="card-title">${currentNameState}</h5>
+                        <p>Municipios</p>
+                      </div>
+                      <div class="card-body" id="statesRows">
+                      ${contentList}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `
             loadNewMarkers(statesApply, {
               lat: parseFloat(latitud),
               lng: parseFloat(longitud)
