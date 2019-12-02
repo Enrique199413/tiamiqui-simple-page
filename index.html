@@ -676,6 +676,7 @@
                 })
                 break
               default:
+                document.querySelector('#lugar').style.display = 'none'
                 console.log('nada')
                 break
             }
@@ -694,7 +695,7 @@
 
           loadNewMarkers = (markers, newCenterState) => {
             closeSecondModal()
-            map.setZoom(9)
+            map.setZoom(8)
             map.setCenter(newCenterState)
             setMapOnAll(null)
             markers.forEach(marker => {
