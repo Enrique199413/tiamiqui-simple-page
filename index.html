@@ -339,7 +339,8 @@
                 donde la compra de una artesanía es toda una experiencia cultural. Nuestro objetivo es valorizar la
                 producción artesanal en México, destacando la tradición, el significado y el proceso de elaboración de
                 cada artesanía.</p></div>
-              <a href="https://tiamiqui.myshopify.com/collections/all" class="btn hero__btn" aria-label="Ver Artesanías: Catálogo">Ver Artesanías</a>
+              <a href="https://tiamiqui.myshopify.com/collections/all" class="btn hero__btn"
+                 aria-label="Ver Artesanías: Catálogo">Ver Artesanías</a>
             </div>
           </div>
           <picture style="display: none;">
@@ -366,9 +367,11 @@
               display: flex !important;
               flex-direction: column;
             }
+
             .mainmenu {
               height: 13rem !important;
             }
+
             .mainmenu li {
               padding: 0.45rem 0 !important;
             }
@@ -381,6 +384,7 @@
               min-height: 100vh !important;
             }
           }
+
           #map {
             height: 100vh;
             width: 100%;
@@ -397,7 +401,7 @@
           }
 
           .mainmenu {
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
             display: flex;
             background: white;
             flex-direction: column;
@@ -427,14 +431,14 @@
             -webkit-transition: all 0.5s ease-out;
           }
 
-          .mainmenu li:hover .submenu {
-            display: block;
-            max-height: 200px;
+          .submenu li {
+            padding: 0.2rem 0.8rem;
+            font-size: 0.9rem;
           }
 
           .submenu {
-            overflow: hidden;
-            max-height: 0;
+            max-height: 100px;
+            overflow: scroll;
             -webkit-transition: all 0.5s ease-out;
           }
 
@@ -454,9 +458,8 @@
             background: white;
             width: 18rem;
             height: auto;
-            padding: 1rem 1rem 1rem;
             min-height: 35rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
             border-radius: 5px;
           }
 
@@ -467,6 +470,63 @@
           .footerInfoContainer {
             display: flex;
             justify-content: space-between;
+            padding: 1rem 1rem 1rem;
+          }
+          .card-text:last-child {
+            margin-bottom: 0;
+          }
+
+          .card-text {
+            color: white !important;
+          }
+
+          .description-text {
+            color: black !important;
+          }
+
+          .card-img {
+            width: 100%;
+            border-radius: calc(.25rem - 1px);
+          }
+
+          .card-title {
+            margin-bottom: .75rem;
+          }
+
+          .card-body {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 1.25rem;
+          }
+
+          .text-white {
+            color: #fff!important;
+          }
+
+          .card-img-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1.25rem;
+          }
+
+
+          #lugar, #artesanos {
+            display: none;
+          }
+          .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border-radius: .25rem;
           }
         </style>
         <div class="section-header text-center">
@@ -490,10 +550,17 @@
                 <ul class="mainmenu">
                   <li class="map-link" onclick="loadNewMap('general')">Mapa General</li>
                   <!--                  <li class="map-link" onclick="getData('')">Tipo de artesanía</li>-->
-                  <li class="map-link" onclick="loadNewMap('Lugar de elaboración de artesanía')">Lugares de Elaboración de
+                  <li class="map-link" onclick="loadNewMap('Lugar de elaboración de artesanía')">Lugares de Elaboración
+                    de
                     artesanías
                   </li>
-                  <li class="map-link" onclick="loadNewMap('Artesanos')">Artesanos</li>
+                  <ul class="submenu" id="lugar">
+                  </ul>
+                  <li class="map-link" onclick="loadNewMap('Artesanos')">
+                    Artesanos
+                  </li>
+                  <ul class="submenu" id="artesanos">
+                  </ul>
                   <!--                  <li class="map-link" onclick="getData('')">Grupo Étnico</li>-->
                 </ul>
               </div>
@@ -506,9 +573,12 @@
         <script>
           let zoom = 6
           let map
+          let statesResults
           let markers = []
           let currentResults
+          let currentNameState
           let currentMarket
+          let newCenter
           let MEXICO_CENTER = { lat: 23.634501, lng: -102.552784 }
           let MEXICO_BOUNDS = {
             north: 32.718653,
@@ -533,27 +603,27 @@
 
           setMapOnAll = (map) => {
             for (let i = 0; i < markers.length; i++) {
-              markers[i].setMap(map);
+              markers[i].setMap(map)
             }
           }
 
           clearMarkers = () => {
-            markers = [];
+            markers = []
             currentMarket = undefined
           }
 
           loadNewMap = (newMap) => {
-            closeSecondModal();
-            map.setZoom(6);
-            map.setCenter(MEXICO_CENTER);
-            setMapOnAll(null);
-            getInfoAndDrawMap(newMap);
+            closeSecondModal()
+            map.setZoom(6)
+            map.setCenter(MEXICO_CENTER)
+            setMapOnAll(null)
+            getInfoAndDrawMap(newMap)
           }
 
           closeSecondModal = () => {
-            document.querySelector('#secondModal').style.display = 'none';
-            map.setZoom(zoom);
-            map.setCenter(MEXICO_CENTER);
+            document.querySelector('#secondModal').style.display = 'none'
+            map.setZoom(zoom)
+            map.setCenter(MEXICO_CENTER)
           }
 
           drawMarkersOnMap = (id, lat, long) => {
@@ -566,25 +636,70 @@
               title: id,
               map: map
             })
-            markers.push(marker);
+            markers.push(marker)
 
             marker.addListener('click', event => {
-              document.querySelector('#secondModal').style.display = 'flex';
-              map.setZoom(9);
+              document.querySelector('#secondModal').style.display = 'flex'
+              map.setZoom(9)
               currentMarket = marker
-              map.setCenter(currentMarket.getPosition());
+              map.setCenter(currentMarket.getPosition())
               getInformation(currentMarket.title)
             })
           }
 
           getInfoAndDrawMap = (nameOfAirtableTable) => {
+            drawContentOfGroupOfData(nameOfAirtableTable)
             getData(nameOfAirtableTable).then(results => {
               currentResults = results
               currentResults.forEach((record) => {
-                const place = record.fields;
+                const place = record.fields
                 drawMarkersOnMap(record.id, parseFloat(place['Latitud']), parseFloat(place['Longitud']))
               })
-            });
+            })
+          }
+
+          drawContentOfGroupOfData = (nameOfAirtableTable) => {
+            let ulDataFromPlace = ''
+            switch (nameOfAirtableTable) {
+              case 'Lugar de elaboración de artesanía':
+                getData('Estados').then(results => {
+                  statesResults = results
+                  statesResults.forEach((record) => {
+                    const place = record.fields
+                    console.log(place)
+                    ulDataFromPlace += `
+                      <li onclick="getPinFromData('${record.id}', '${place["Latitud"]}', '${place["Longitud"]}', '${place["name"]}')">${place.name}</li>
+                    `
+                  })
+                  document.querySelector('#lugar').innerHTML = ulDataFromPlace
+                  document.querySelector('#lugar').style.display = 'block'
+                })
+                break
+              default:
+                console.log('nada')
+                break
+            }
+          }
+
+          getPinFromData = (id, latitud, longitud, nameState) => {
+            currentNameState = nameState
+            let statesApply = currentResults.filter(currentResult => {
+              return currentResult.fields['Estado'].indexOf(id) >= 0
+            })
+            loadNewMarkers(statesApply, {
+              lat: parseFloat(latitud),
+              lng: parseFloat(longitud)
+            })
+          }
+
+          loadNewMarkers = (markers, newCenterState) => {
+            closeSecondModal()
+            map.setZoom(9)
+            map.setCenter(newCenterState)
+            setMapOnAll(null)
+            markers.forEach(marker => {
+              drawMarkersOnMap(marker.id, parseFloat(marker.fields['Latitud']), parseFloat(marker.fields['Longitud']))
+            })
           }
 
           getInformation = (id) => {
@@ -606,16 +721,37 @@
               document.querySelector('#informationAboutMarker').innerHTML = `
               <div class="titleAboutMarker">${currentDataAboutClick['Nombre']}</div>
               <div id="artesaniasArtesano"></div>
-              `;
+              `
             } else {
-
-              console.log(currentDataAboutClick)
+              let finalImagen
+              if (currentDataAboutClick.imagen) {
+                finalImagen = currentDataAboutClick.imagen[0].thumbnails.large.url
+              } else {
+                finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
+              }
               document.querySelector('#informationAboutMarker').innerHTML = `
-              <div class="titleAboutMarker">${currentDataAboutClick['Localidad']}</div>
-              <div class="stateAboutMarker">${currentDataAboutClick['Estado']}</div>
-              <div class="artisansAboutMarker">${currentDataAboutClick['Artesanias']}</div>
-              <div class="artisansAboutMarker">${currentDataAboutClick['Artesanias']}</div>
-              `;
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-lg-6 col-md-8">
+                    <div class="card shadow">
+                      <img class="card-img" src="${finalImagen}" alt="succulent">
+                      <div class="card-img-overlay text-white">
+                        <h5 class="card-title">${currentDataAboutClick['Localidad']}</h5>
+                        <p class="card-text">${currentNameState}</p>
+                      </div>
+                      <div class="card-body">
+<!--                        <h4 class="card-title">Another Title</h4>-->
+                        <p class="description-text">
+                          <small class="text-muted">
+                        ${currentDataAboutClick.descripcion}
+                      </small>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              `
             }
           }
         </script>
