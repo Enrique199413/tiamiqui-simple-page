@@ -356,8 +356,6 @@
                style="background-image: url('//cdn.shopify.com/s/files/1/0273/9847/1715/files/handicraft-4388501_1920-min_2048x.jpg?v=1573951282'); background-position: center center;"></div>
         </noscript>
       </div>
-
-
     </div>
     <div id="shopify-section-1574535424541" class="shopify-section more-square-gallery-flex">
       <div class="no_view_mobile">
@@ -385,625 +383,67 @@
             }
           }
 
-          #map {
+          .container-tiamiqui {
+            display: flex;
+            width: 100%;
+          }
+
+          .container-interactive {
+            transition: all 250ms linear;
             height: 100vh;
-            width: 100%;
-          }
-
-          .mainContainerWith {
-            display: flex;
-          }
-
-          .menu {
-            position: fixed;
-            z-index: 100000;
-            right: 0;
-          }
-
-          .mainmenu {
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            display: flex;
-            background: white;
-            flex-direction: column;
-            justify-content: space-between;
-          }
-
-          /* reset our lists to remove bullet points and padding */
-          .mainmenu,
-          .submenu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-          }
-
-          /* make ALL links (main and submenu) have padding and background color */
-          .mainmenu li {
-            display: block;
-            text-decoration: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 1.4rem 0.5rem;
-          }
-
-          /* add hover behaviour */
-          .mainmenu li:hover {
-            background-color: #f1f1f1;
-            -webkit-transition: all 0.5s ease-out;
-          }
-
-          .submenu li {
-            padding: 0.2rem 0.8rem;
-            font-size: 0.9rem;
-          }
-
-          .submenu {
-            max-height: 100px;
-            overflow: scroll;
-            -webkit-transition: all 0.5s ease-out;
-          }
-
-          .mainContainer {
-            display: flex;
-            width: 100%;
-            justify-content: center;
-          }
-
-          .infoContainer {
-            display: none;
-            flex-direction: column;
-            justify-items: center;
-            justify-content: space-between;
-            position: fixed;
-            z-index: 100002;
-            background: white;
-            width: 18rem;
-            height: auto;
-            min-height: 35rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            border-radius: 5px;
-          }
-
-          #back {
-            cursor: pointer;
-          }
-
-          .footerInfoContainer {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem 1rem 1rem;
-          }
-          .card-text:last-child {
-            margin-bottom: 0;
-          }
-
-          .card-text {
-            color: white !important;
-          }
-
-          .description-text {
-            color: black !important;
-          }
-
-          .card-img {
-            width: 100%;
-            border-radius: calc(.25rem - 1px);
-          }
-
-          .card-title {
-            margin-bottom: .75rem;
-          }
-
-          .card-body {
-            -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-            padding: 1.25rem;
-          }
-
-          .text-white {
-            color: #fff!important;
-          }
-
-          .card-img-overlay {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 1.25rem;
-          }
-
-          .card-img-overlay-countries {
-            padding: 1rem 1rem 0rem 1rem;
-          }
-
-
-          #lugar, #artesanos {
-            display: none;
-          }
-          .card {
-            position: relative;
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border-radius: .25rem;
-          }
-          .row-country {
-            padding: 1rem 0;
-          }
-        </style>
-        <div class="section-header text-center">
-          <h2>Mapa de nuestros artesanos</h2>
-        </div>
-        <div class="mainContainerWith">
-          <div class="infoContainer" id="secondModal">
-            <div id="informationAboutMarker">
-
-            </div>
-            <div class="footerInfoContainer">
-              <div id="buttonForSell">
-                <a href="https://tiamiqui.myshopify.com/products/macetas-en-forma-de-palomas">Comprar</a>
-              </div>
-              <div id="back" onclick="closeSecondModal()">Regresar</div>
-            </div>
-          </div>
-          <div class="infoContainer" id="thirdModal">
-            <div id="informationAboutState">
-
-            </div>
-          </div>
-          <div class="menu">
-            <div class="mainContainer">
-              <div class="navigation">
-                <ul class="mainmenu">
-                  <li class="map-link" onclick="loadNewMap('general')">Mapa General</li>
-                  <!--                  <li class="map-link" onclick="getData('')">Tipo de artesanía</li>-->
-                  <li class="map-link" onclick="loadNewMap('Lugar de elaboración de artesanía')">Lugares de Elaboración
-                    de
-                    artesanías
-                  </li>
-                  <ul class="submenu" id="lugar">
-                  </ul>
-                  <li class="map-link" onclick="loadNewMap('Artesanos')">
-                    Artesanos
-                  </li>
-                  <ul class="submenu" id="artesanos">
-                  </ul>
-                  <!--                  <li class="map-link" onclick="getData('')">Grupo Étnico</li>-->
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="map"></div>
-        </div>
-        <script src="js/vendor/airtable.browser.js"></script>
-        <script src="js/main.js"></script>
-        <script>
-          let zoom = 6
-          let map
-          let statesResults
-          let markers = []
-          let currentResults
-          let currentNameState
-          let currentMarket
-          let newCenter
-          let MEXICO_CENTER = { lat: 23.634501, lng: -102.552784 }
-          let MEXICO_BOUNDS = {
-            north: 32.718653,
-            south: -86.5887,
-            west: 14.3895,
-            east: -118.6523,
-          }
-
-          initMap = () => {
-            if (document.body.offsetWidth <= 850) {
-              zoom = 4
-            } else {
-              zoom = 6
-            }
-            map = new google.maps.Map(document.getElementById('map'), {
-              center: MEXICO_CENTER,
-              zoom: zoom,
-              disableDefaultUI: true
-            })
-            getInfoAndDrawMap('general')
-          }
-
-          setMapOnAll = (map) => {
-            for (let i = 0; i < markers.length; i++) {
-              markers[i].setMap(map)
-            }
-          }
-
-          clearMarkers = () => {
-            markers = []
-            currentMarket = undefined
-          }
-
-          loadNewMap = (newMap) => {
-            closeSecondModal()
-            map.setZoom(6)
-            map.setCenter(MEXICO_CENTER)
-            setMapOnAll(null)
-            getInfoAndDrawMap(newMap)
-          }
-
-          closeSecondModal = () => {
-            document.querySelector('#secondModal').style.display = 'none'
-            document.querySelector('#lugar').style.display = 'none'
-            map.setZoom(zoom)
-            map.setCenter(MEXICO_CENTER)
-          }
-
-          drawMarkersOnMap = (id, lat, long) => {
-            let marker = new google.maps.Marker({
-              position: {
-                lat: lat,
-                lng: long,
-              },
-              animation: google.maps.Animation.DROP,
-              title: id,
-              map: map
-            })
-            markers.push(marker)
-
-            marker.addListener('click', event => {
-              document.querySelector('#secondModal').style.display = 'flex'
-              document.querySelector('#thirdModal').style.display = 'none'
-              map.setZoom(9)
-              currentMarket = marker
-              map.setCenter(currentMarket.getPosition())
-              getInformation(currentMarket.title)
-            })
-          }
-
-          getInfoAndDrawMap = (nameOfAirtableTable) => {
-            drawContentOfGroupOfData(nameOfAirtableTable)
-            getData(nameOfAirtableTable).then(results => {
-              currentResults = results
-              currentResults.forEach((record) => {
-                const place = record.fields
-                drawMarkersOnMap(record.id, parseFloat(place['Latitud']), parseFloat(place['Longitud']))
-              })
-            })
-          }
-
-          drawContentOfGroupOfData = (nameOfAirtableTable) => {
-            let ulDataFromPlace = ''
-            switch (nameOfAirtableTable) {
-              case 'Lugar de elaboración de artesanía':
-                getData('Estados').then(results => {
-                  statesResults = results
-                  statesResults.forEach((record) => {
-                    const place = record.fields
-                    console.log(place)
-                    ulDataFromPlace += `
-                      <li onclick="getPinFromData('${record.id}', '${place["Latitud"]}', '${place["Longitud"]}', '${place["name"]}')">${place.name}</li>
-                    `
-                  })
-                  document.querySelector('#lugar').innerHTML = ulDataFromPlace
-                  document.querySelector('#lugar').style.display = 'block'
-                })
-                break
-              default:
-                document.querySelector('#lugar').style.display = 'none'
-                console.log('nada')
-                break
-            }
-          }
-
-          getPinFromData = (id, latitud, longitud, nameState) => {
-            currentNameState = nameState
-            let contentList = ''
-            let statesApply = currentResults.filter(currentResult => {
-              if (currentResult.fields['Estado'].indexOf(id) >= 0) {
-                contentList += `<div class="row-country">${currentResult.fields.Localidad}</div>`
-                return currentResult
-              }
-            })
-            console.log(statesApply)
-            document.querySelector('#thirdModal').style.display = 'block'
-            document.querySelector('#thirdModal').innerHTML = `
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-lg-6 col-md-8">
-                    <div class="card shadow">
-                      <div class="card-img-overlay-countries">
-                        <h5 class="card-title">${currentNameState}</h5>
-                        <p>Municipios</p>
-                      </div>
-                      <div class="card-body" id="statesRows">
-                      ${contentList}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            `
-            loadNewMarkers(statesApply, {
-              lat: parseFloat(latitud),
-              lng: parseFloat(longitud)
-            })
-          }
-
-          loadNewMarkers = (markers, newCenterState) => {
-            closeSecondModal()
-            map.setZoom(8)
-            map.setCenter(newCenterState)
-            setMapOnAll(null)
-            markers.forEach(marker => {
-              drawMarkersOnMap(marker.id, parseFloat(marker.fields['Latitud']), parseFloat(marker.fields['Longitud']))
-            })
-          }
-
-          getInformation = (id) => {
-            let currentDataAboutClick = currentResults.filter(result => result.id === id)[0].fields
-            let artesaniasDelArtesanoHTML = ''
-            if (currentDataAboutClick.tipo === 2) {
-              getData('ArtesaniaArtesano').then(results => {
-                results.forEach(artesania => {
-                  let indexArtesania = artesania.fields['Artesano'].indexOf(id)
-                  if (indexArtesania >= 0) {
-                    artesaniasDelArtesanoHTML += `
-                    <div class="artesania">${artesania.fields['Artesania']}</div>
-                    `
-                  }
-                })
-                document.querySelector('#artesaniasArtesano').innerHTML = artesaniasDelArtesanoHTML
-              })
-              console.log(artesaniasDelArtesanoHTML)
-              document.querySelector('#informationAboutMarker').innerHTML = `
-              <div class="titleAboutMarker">${currentDataAboutClick['Nombre']}</div>
-              <div id="artesaniasArtesano"></div>
-              `
-            } else {
-              let finalImagen
-              if (currentDataAboutClick.imagen) {
-                finalImagen = currentDataAboutClick.imagen[0].thumbnails.large.url
-              } else {
-                finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
-              }
-              document.querySelector('#informationAboutMarker').innerHTML = `
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-lg-6 col-md-8">
-                    <div class="card shadow">
-                      <img class="card-img" src="${finalImagen}" alt="succulent">
-                      <div class="card-img-overlay text-white">
-                        <h5 class="card-title">${currentDataAboutClick['Localidad']}</h5>
-                        <p class="card-text">${currentNameState}</p>
-                      </div>
-                      <div class="card-body">
-<!--                        <h4 class="card-title">Another Title</h4>-->
-                        <p class="description-text">
-                          <small class="text-muted">
-                        ${currentDataAboutClick.descripcion}
-                      </small>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              `
-            }
-          }
-        </script>
-        <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDosgQ2FYyGTB6t-25_I9cjHxS-AtcgqRw&callback=initMap"
-          async defer></script>
-        <script src="https://www.amcharts.com/lib/4/core.js"></script>
-        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-        <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
-        <script src="https://www.amcharts.com/lib/4/lang/de_DE.js"></script>
-        <script src="https://www.amcharts.com/lib/4/geodata/germanyLow.js"></script>
-
-        <script>
-          console.log(am4core)
-        </script>
-      </div>
-
-    </div>
-    <div id="shopify-section-1574535424541" class="shopify-section more-square-gallery-flex">
-      <div class="no_view_mobile">
-        <style>
-          @media screen and (max-width: 850px) {
-            .mainContainer {
-              display: flex !important;
-              flex-direction: column;
-            }
-
-            .mainmenu {
-              height: 13rem !important;
-            }
-
-            .mainmenu li {
-              padding: 0.45rem 0 !important;
-            }
-
-            .menu, .infoContainer {
-              position: absolute !important;
-            }
-
-            .infoContainer {
-              min-height: 100vh !important;
-            }
-          }
-
-          .container-tiamiqui, .container-interactive {
-            height: 100vh;
-            width: 100%;
             background: #aadbff;
+            flex-basis: 100%;
+            border-bottom: 1px solid #d6d6d6;
           }
-
-          .mainContainerWith {
-            display: flex;
-          }
-
-          .menu {
-            position: fixed;
-            z-index: 100000;
-            right: 0;
-          }
-
-          .mainmenu {
+          .filter-container {
+            transition: all 250ms linear;
+            height: 100vh;
+            background: white;
+            flex-basis: 0%;
+            width: 0;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            display: flex;
-            background: white;
-            flex-direction: column;
-            justify-content: space-between;
-          }
-
-          /* reset our lists to remove bullet points and padding */
-          .mainmenu,
-          .submenu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-          }
-
-          /* make ALL links (main and submenu) have padding and background color */
-          .mainmenu li {
-            display: block;
-            text-decoration: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 1.4rem 0.5rem;
-          }
-
-          /* add hover behaviour */
-          .mainmenu li:hover {
-            background-color: #f1f1f1;
-            -webkit-transition: all 0.5s ease-out;
-          }
-
-          .submenu li {
-            padding: 0.2rem 0.8rem;
-            font-size: 0.9rem;
-          }
-
-          .submenu {
-            max-height: 100px;
-            overflow: scroll;
-            -webkit-transition: all 0.5s ease-out;
-          }
-
-          .mainContainer {
-            display: flex;
-            width: 100%;
-            justify-content: center;
-          }
-
-          .infoContainer {
-            display: none;
-            flex-direction: column;
-            justify-items: center;
-            justify-content: space-between;
-            position: fixed;
-            z-index: 100002;
-            background: white;
-            width: 18rem;
-            height: auto;
-            min-height: 35rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            border-radius: 5px;
-          }
-
-          #back {
-            cursor: pointer;
-          }
-
-          .footerInfoContainer {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem 1rem 1rem;
-          }
-          .card-text:last-child {
-            margin-bottom: 0;
-          }
-
-          .card-text {
-            color: white !important;
-          }
-
-          .description-text {
-            color: black !important;
-          }
-
-          .card-img {
-            width: 100%;
-            border-radius: calc(.25rem - 1px);
-          }
-
-          .card-title {
-            margin-bottom: .75rem;
-          }
-
-          .card-body {
-            -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-            padding: 1.25rem;
-          }
-
-          .text-white {
-            color: #fff!important;
-          }
-
-          .card-img-overlay {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 1.25rem;
-          }
-
-          .card-img-overlay-countries {
-            padding: 1rem 1rem 0rem 1rem;
-          }
-
-
-          #lugar, #artesanos {
-            display: none;
-          }
-          .card {
-            position: relative;
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border-radius: .25rem;
-          }
-          .row-country {
-            padding: 1rem 0;
+            z-index: 0;
+            border-top: 1px solid #d6d6d6;
           }
         </style>
         <div class="section-header text-center">
           <h2>Mapa de nuestros artesanos</h2>
         </div>
         <div class="container-tiamiqui">
-          <div class="container-details"></div>
+          <div class="filter-container" id="filter-container">
+            <div class="container-details">
+              Información
+            </div>
+            <div class="container-details">
+              Información
+            </div>
+            <div class="container-details">
+              Información
+            </div>
+            <div class="container-details">
+              Información
+            </div>
+            <button onclick="createNewPoints()">Crear más regiones</button>
+          </div>
           <div class="container-interactive" id="map-tiamiqui"></div>
         </div>
         <script src="https://www.amcharts.com/lib/4/core.js"></script>
+        <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
         <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
+
         <script src="https://www.amcharts.com/lib/4/maps.js"></script>
         <script src="https://www.amcharts.com/lib/4/geodata/mexicoHigh.js"></script>
 
         <script>
-          console.log(am4core)
+          let mapCountries = []
           //let mapInteractive = am4core.create("chartdiv", am4maps.MapChart);
           //mapInteractive.geodata = am4geodata_worldLow;
           var imageSeries;
           let currentActive;
+          let imageSeriesTemplate
+
+          am4core.useTheme(am4themes_animated);
+          am4core.useTheme(am4themes_material);
 
           let chart = am4core.create("map-tiamiqui", am4maps.MapChart);
 
@@ -1028,21 +468,41 @@
           button.align = "right";
           button.marginRight = 15;
           button.events.on("hit", function() {
-            chart.goHome();
-            if (chart.series.length > 1) {
-              chart.series.removeIndex(1);
-            }
-
-            console.log(currentActive)
-            currentActive.isActive = !currentActive.isActive;
+            document.querySelector('#map-tiamiqui').style.flexBasis = '100%';
+            document.querySelector('#filter-container').style.flexBasis = '0%';
+            document.querySelector('#filter-container').style.zIndex = '0';
+            setTimeout(() => {
+              chart.goHome();
+              if (chart.series.length > 1) {
+                chart.series.removeIndex(1);
+              }
+              currentActive.isActive = !currentActive.isActive;
+            }, 500)
           });
           button.icon = new am4core.Sprite();
           button.icon.path = "M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8";
 
           var activeState = polygonTemplate.states.create("active");
-          activeState.properties.fill = chart.colors.getIndex(4);
+          activeState.properties.fill = am4core.color("#1e7bc8");
 
           // Create an event to toggle "active" state
+
+          createNewPoints = () => {
+            mapCountries = polygonSeries.children.values.filter(serie => {
+              return serie.className === 'MapPolygon'
+            })
+
+            mapCountries.forEach(country => {
+              // console.log(country.dataItem.dataContext.id)
+              country.isActive = !country.isActive
+            })
+            console.log(imageSeries.data, imageSeries.addData)
+            imageSeries.addData({
+              "latitude": 27.673137,
+              "longitude": -102.706860,
+              "title": "Onasdasde"
+            });
+          }
 
           polygonTemplate.events.on("hit", function(ev) {
             currentActive = ev.target;
@@ -1050,15 +510,18 @@
             // zoom to an object
             ev.target.series.chart.zoomToMapObject(ev.target);
 
+            document.querySelector('#map-tiamiqui').style.flexBasis = '80%';
+            document.querySelector('#filter-container').style.flexBasis = '20%';
+            document.querySelector('#filter-container').style.zIndex = '1';
+
             // get object info
-            console.log(ev.target.dataItem);
             imageSeries = chart.series.push(new am4maps.MapImageSeries());
 
             // Create a circle image in image series template so it gets replicated to all new images
-            var imageSeriesTemplate = imageSeries.mapImages.template;
+            imageSeriesTemplate = imageSeries.mapImages.template;
             var circle = imageSeriesTemplate.createChild(am4core.Circle);
             circle.radius = 4;
-            circle.fill = am4core.color("#B27799");
+            circle.fill = am4core.color("#1e7bc8");
             circle.stroke = am4core.color("#FFFFFF");
             circle.strokeWidth = 2;
             circle.nonScaling = true;
@@ -1086,12 +549,8 @@
           polygonTemplate.fill = am4core.color("#f5f5f5");
 
           // Create hover state and set alternative fill color
-          console.log(polygonSeries.dataProvider.data)
           let hs = polygonTemplate.states.create("hover");
           hs.properties.fill = am4core.color("#ceedce");
-
-          polygonTemplate.propertyFields.latitude = "latitude";
-          polygonTemplate.propertyFields.longitude = "longitude";
 
           // Bind "fill" property to "fill" key in data
           polygonTemplate.propertyFields.fill = "fill";
