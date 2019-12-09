@@ -395,6 +395,7 @@
             flex-basis: 100%;
             border-bottom: 1px solid #d6d6d6;
           }
+
           .filter-container {
             transition: all 250ms linear;
             height: 100vh;
@@ -404,29 +405,181 @@
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
             z-index: 0;
             border-top: 1px solid #d6d6d6;
+            overflow: scroll;
           }
+
+          .searchContainer {
+            display: flex;
+            justify-content: space-between;
+          }
+          .artesania, .lugar {
+            background-repeat: no-repeat;
+            background-size: cover !important;
+            background-position: center !important;
+            font-size: 2rem;
+            color: white;
+            text-shadow: 2px 2px 3px black;
+          }
+
+          .lugar {
+            display: flex;
+            flex-direction: column;
+          }
+          .lugar > .details-about-lugar {
+            font-size: large !important;
+            margin: 0 3rem;
+          }
+
+          .glider-track {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            z-index: 1;
+          }
+          .glider-slide {
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #f5f5f5;
+            border-bottom: 0;
+          }
+          .glider-contain {
+            margin-bottom: 25px;
+          }
+          .glider-next, .glider-prev {
+            margin: 2rem !important;
+          }
+          .main-title {
+            position: fixed;
+            height: 4rem;
+            background: white;
+            z-index: 10;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+            padding-top: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+          }
+          .main-title + div {
+            margin-top: 4rem;
+          }
+
+          .btn {
+            background: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 40px;
+            color: rgba(0,0,0,0.75);
+            display: block;
+            font-size: 1em;
+            font-weight: 400;
+            height: 44px;
+            letter-spacing: 5px;
+            line-height: 42px;
+            margin: 10px auto;
+            padding: 0;
+            position: relative;
+            text-align: center;
+            text-transform: uppercase;
+            -webkit-transition: all .5s ease;
+            transition: all .5s ease;
+            vertical-align: middle;
+            width: 60%;
+          }
+
+          .btn:hover {
+            background: rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.15);
+          }
+
+          .overlay {
+            background-size: cover;
+            height: calc(100% + 40px);
+            margin: -20px;
+            position: relative;
+            width: calc(100% + 40px);
+            -webkit-filter: blur(10px);
+            -moz-filter: blur(10px);
+            filter: blur(10px);
+          }
+
+          .window {
+            box-shadow: 0 0 100px  rgba(0,0,0,0.25);
+            height: 560px;
+            margin: 2em auto 0;
+            width: 320px;
+          }
+
         </style>
+        <script src="js/vendor/airtable.browser.js"></script>
+        <script src="js/vendor/glider.min.js"></script>
+        <link rel="stylesheet" href="js/vendor/glider.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="js/main.js"></script>
         <div class="section-header text-center">
           <h2>Mapa de nuestros artesanos</h2>
         </div>
         <div class="container-tiamiqui">
           <div class="filter-container" id="filter-container">
-            <div class="container-details">
-              Información
+            <div class="container-details main-title">
+              <h2 id="title"></h2>
             </div>
             <div class="container-details">
-              Información
+              <div class="searchContainer">
+                <h3>Artesanías</h3>
+<!--                <input type="text" placeholder="Buscar artesania"/>-->
+              </div>
+              <div data-name="Single Item" class="glider-contain">
+                <div class="gradient-border-bottom">
+                  <div class="gradient-border">
+                    <div class="glider" id="artesanias">
+                    </div>
+                  </div>
+                </div>
+                <div class="dots" id="dots-artesanias"></div>
+              </div>
             </div>
             <div class="container-details">
-              Información
+              <div class="searchContainer">
+                <h3>Lugares de Elaboración</h3>
+<!--                <input type="text" placeholder="Buscar lugar de elaboración"/>-->
+              </div>
+              <div data-name="Single Item" class="glider-contain">
+                <div class="gradient-border-bottom">
+                  <div class="gradient-border">
+                    <div class="glider" id="lugares">
+                    </div>
+                  </div>
+                </div>
+                <div class="dots" id="dots-lugares"></div>
+              </div>
             </div>
             <div class="container-details">
-              Información
+              <div class="searchContainer">
+                <h3>Artesanos</h3>
+<!--                <input type="text" placeholder="Buscar artesano"/>-->
+              </div>
+              <div data-name="Single Item" class="glider-contain">
+                <div class="gradient-border-bottom">
+                  <div class="gradient-border">
+                    <div class="glider" id="artesanos">
+                    </div>
+                  </div>
+                </div>
+                <div class="dots" id="dots-artesanos"></div>
+              </div>
             </div>
-            <button onclick="createNewPoints()">Crear más regiones</button>
           </div>
           <div class="container-interactive" id="map-tiamiqui"></div>
         </div>
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+        <!-- JavaScript -->
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
         <script src="https://www.amcharts.com/lib/4/core.js"></script>
         <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
         <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
@@ -438,54 +591,176 @@
           let mapCountries = []
           //let mapInteractive = am4core.create("chartdiv", am4maps.MapChart);
           //mapInteractive.geodata = am4geodata_worldLow;
-          var imageSeries;
-          let currentActive;
+          var imageSeries
+          let currentActive
           let imageSeriesTemplate
+          let lugaresDeElaboracion = []
+          let estados = []
+          let artesanias = []
+          let artesanos = []
+          let gliders = [];
 
-          am4core.useTheme(am4themes_animated);
-          am4core.useTheme(am4themes_material);
+          createGlider = (id) => {
 
-          let chart = am4core.create("map-tiamiqui", am4maps.MapChart);
+            return new Glider(document.querySelector(`#${id}`), {
+              slidesToShow: 1,
+              dots: `#dots-${id}`,
+              draggable: true,
+              easing: function (x, t, b, c, d) {
+                return c * (t /= d) * t + b
+              }
+            })
+          }
+          am4core.useTheme(am4themes_animated)
+          am4core.useTheme(am4themes_material)
+
+          let chart = am4core.create('map-tiamiqui', am4maps.MapChart)
 
           // Set map definition
-          chart.geodata = am4geodata_mexicoHigh;
-          chart.chartContainer.wheelable = false;
+          chart.geodata = am4geodata_mexicoHigh
+          chart.chartContainer.wheelable = false
 
           // Set projection
-          chart.projection = new am4maps.projections.Miller();
+          chart.projection = new am4maps.projections.Miller()
 
           // Create map polygon series
-          let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+          let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries())
 
           // Make map load polygon (like country names) data from GeoJSON
-          polygonSeries.useGeodata = true;
+          polygonSeries.useGeodata = true
 
           // Configure series
-          let polygonTemplate = polygonSeries.mapPolygons.template;
+          let polygonTemplate = polygonSeries.mapPolygons.template
 
-          var button = chart.chartContainer.createChild(am4core.Button);
-          button.padding(5, 5, 5, 5);
-          button.align = "right";
-          button.marginRight = 15;
-          button.events.on("hit", function() {
-            document.querySelector('#map-tiamiqui').style.flexBasis = '100%';
-            document.querySelector('#filter-container').style.flexBasis = '0%';
-            document.querySelector('#filter-container').style.zIndex = '0';
+          var button = chart.chartContainer.createChild(am4core.Button)
+          button.padding(5, 5, 5, 5)
+          button.align = 'right'
+          button.marginRight = 15
+          button.events.on('hit', function () {
+            document.querySelector('#map-tiamiqui').style.flexBasis = '100%'
+            document.querySelector('#filter-container').style.flexBasis = '0%'
+            document.querySelector('#filter-container').style.zIndex = '0'
             setTimeout(() => {
-              chart.goHome();
-              if (chart.series.length > 1) {
-                chart.series.removeIndex(1);
-              }
-              currentActive.isActive = !currentActive.isActive;
+              chart.goHome()
+              resetAllStates()
             }, 500)
-          });
-          button.icon = new am4core.Sprite();
-          button.icon.path = "M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8";
+          })
+          button.icon = new am4core.Sprite()
+          button.icon.path = 'M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8'
 
-          var activeState = polygonTemplate.states.create("active");
-          activeState.properties.fill = am4core.color("#1e7bc8");
+          var activeState = polygonTemplate.states.create('active')
+          activeState.properties.fill = am4core.color('#1e7bc8')
 
           // Create an event to toggle "active" state
+
+          loadDataAbout = async (informacionEstado) => {
+            let estadoSeleccionado = estados.filter(estado => {
+              return estado.fields.id === informacionEstado.id
+            })
+            let htmlFromArtesania = ``
+            let htmlFromLugares = ``
+            let htmlFromArtesanos = ``
+            let { name, id } = informacionEstado
+            let artesaniasPorEstado = await artesanias.filter(artesania => {
+              return artesania.fields.artesano.Estado.indexOf(estadoSeleccionado[0].id) >= 0
+            })
+
+            let lugaresPorEstado = await lugaresDeElaboracion.filter(lugar => {
+              return lugar.fields.Estado.indexOf(estadoSeleccionado[0].id) >= 0
+            })
+
+            let artesanosPorEstado = await artesanos.filter(artesano => {
+              console.log(artesano)
+              return artesano.fields.Estado.indexOf(estadoSeleccionado[0].id) >= 0
+            })
+
+            artesaniasPorEstado.forEach(artesania => {
+              if (false) {
+                finalImagen = currentDataAboutClick.imagen[0].thumbnails.large.url
+              } else {
+                finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
+              }
+              htmlFromArtesania += `<div class="artesania" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
+                url(${finalImagen})" onclick="loadModal('${artesania.id}')">
+                ${artesania.fields.Artesania}
+              </div>`
+            })
+
+            lugaresPorEstado.forEach(lugar => {
+              if (lugar.fields.imagen) {
+                finalImagen = lugar.fields.imagen[0].thumbnails.large.url
+              } else {
+                finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
+              }
+              htmlFromLugares += `<div class="lugar" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
+                url(${finalImagen})" onclick="loadModal('${lugar.id}')">
+                ${lugar.fields.Localidad}
+                <div class="details-about-lugar">${lugar.fields.descripcion !== undefined ? lugar.fields.descripcion : ''}</div>
+              </div>`
+            })
+
+            artesanosPorEstado.forEach(artesano => {
+              if (artesano.fields.imagen) {
+                finalImagen = artesano.fields.imagen[0].thumbnails.large.url
+              } else {
+                finalImagen = 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
+              }
+              htmlFromArtesanos += `
+              <div class="page">
+                <div class="page__container">
+                  <article class="profile">
+                    <header class="profile__header">
+                      <img src="${finalImagen}" class="profile__avatar" alt="avatar of Stas Melnikov">
+                      <h3 class="profile__name">${artesano.fields.Nombre}</h3>
+                    </header>
+<!--                    <div class="profile__stats">-->
+<!--                      <div class="profile__group">-->
+<!--                        <span class="profile__value">85%</span>-->
+<!--                        <span class="profile__param">HTML</span>-->
+<!--                      </div>-->
+<!--                      <div class="profile__group">-->
+<!--                        <span class="profile__value">90%</span>-->
+<!--                        <span class="profile__param">CSS</span>-->
+<!--                      </div>-->
+<!--                      <div class="profile__group">-->
+<!--                        <span class="profile__value">85%</span>-->
+<!--                        <span class="profile__param">Web-Design</span>-->
+<!--                      </div>-->
+<!--                      <div class="profile__group">-->
+<!--                        <span class="profile__value">98%</span>-->
+<!--                        <span class="profile__param">Animation</span>-->
+<!--                      </div>-->
+<!--                      <div class="profile__group">-->
+<!--                        <span class="profile__value">52%</span>-->
+<!--                        <span class="profile__param">Javascript</span>-->
+<!--                      </div>-->
+<!--                      <div class="profile__group">-->
+<!--                        <span class="profile__value">10%</span>-->
+<!--                        <span class="profile__param">PHP</span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+                    <div class="profile__socials">
+                      <div></div>
+                    </div>
+                  </article>
+                </div>
+              </div>`
+            })
+
+            document.querySelector('#title').innerHTML = name
+            document.querySelector('#artesanias').innerHTML = htmlFromArtesania
+            document.querySelector('#lugares').innerHTML = htmlFromLugares
+            document.querySelector('#artesanos').innerHTML = htmlFromArtesanos
+            setTimeout(() => {
+              gliders.push(createGlider('artesanias'));
+              gliders.push(createGlider('lugares'));
+              gliders.push(createGlider('artesanos'));
+              gliders.forEach(glider => {
+                glider.refresh(true)
+              })
+            }, 500)
+
+          }
 
           createNewPoints = () => {
             mapCountries = polygonSeries.children.values.filter(serie => {
@@ -497,41 +772,95 @@
               country.isActive = !country.isActive
             })
             console.log(imageSeries.data, imageSeries.addData)
-            imageSeries.addData({
-              "latitude": 27.673137,
-              "longitude": -102.706860,
-              "title": "Onasdasde"
-            });
           }
 
-          polygonTemplate.events.on("hit", function(ev) {
-            currentActive = ev.target;
-            ev.target.isActive = !ev.target.isActive;
+          resetAllStates = () => {
+            mapCountries = polygonSeries.children.values.filter(serie => {
+              return serie.className === 'MapPolygon'
+            })
+
+            mapCountries.forEach(country => {
+              // console.log(country.dataItem.dataContext.id)
+              country.isActive = false
+            })
+          }
+
+          polygonTemplate.events.on('hit', function (ev) {
+            resetAllStates()
+            currentActive = ev.target
+            ev.target.isActive = !ev.target.isActive
             // zoom to an object
-            ev.target.series.chart.zoomToMapObject(ev.target);
+            ev.target.series.chart.zoomToMapObject(ev.target)
+            document.querySelector('#map-tiamiqui').style.flexBasis = '50%'
+            document.querySelector('#filter-container').style.flexBasis = '50%'
+            document.querySelector('#filter-container').style.zIndex = '1'
+            cleanFilterDiv().then(() => {
+              loadDataAbout(ev.target.dataItem.dataContext)
+            })
+          })
 
-            document.querySelector('#map-tiamiqui').style.flexBasis = '80%';
-            document.querySelector('#filter-container').style.flexBasis = '20%';
-            document.querySelector('#filter-container').style.zIndex = '1';
+          cleanFilterDiv = () => {
+            gliders.forEach(glider => {
+              glider.destroy()
+            })
+            gliders = [];
+            document.querySelector('#artesanias').innerHTML = ''
+            document.querySelector('#lugares').innerHTML = ''
+            return Promise.resolve()
+          }
+          polygonTemplate.tooltipText = '{name}'
+          polygonTemplate.fill = am4core.color('#c5c5c5')
 
-            // get object info
-            imageSeries = chart.series.push(new am4maps.MapImageSeries());
+          // Create hover state and set alternative fill color
+          let hs = polygonTemplate.states.create('hover')
+          hs.properties.fill = am4core.color('#ceedce')
 
-            // Create a circle image in image series template so it gets replicated to all new images
-            imageSeriesTemplate = imageSeries.mapImages.template;
-            var circle = imageSeriesTemplate.createChild(am4core.Circle);
-            circle.radius = 4;
-            circle.fill = am4core.color("#1e7bc8");
-            circle.stroke = am4core.color("#FFFFFF");
-            circle.strokeWidth = 2;
-            circle.nonScaling = true;
-            circle.tooltipText = "{title}";
+          // Bind "fill" property to "fill" key in data
+          polygonTemplate.propertyFields.fill = 'fill'
 
+          getPointsLugaresDeElaboracion = async () => {
+            lugaresDeElaboracion = await getData('Lugar de elaboración de artesanía')
+            lugaresDeElaboracion.forEach(lugar => {
+              addPoint(lugar.fields.Latitud, lugar.fields.Longitud, lugar.fields.Localidad)
+            })
+            getCircle('#dd9a19')
+          }
+
+          getCircle = (fillColor, strokeColor = '#FFFFFF') => {
+            let circle = imageSeriesTemplate.createChild(am4core.Circle)
+            circle.radius = 4
+            circle.fill = am4core.color(fillColor)
+            circle.stroke = am4core.color(strokeColor)
+            circle.strokeWidth = 2
+            circle.nonScaling = true
+            circle.tooltipText = '{title}'
+            return circle
+          }
+
+          addPoint = (lat, lng, title) => {
+            imageSeries.addData({
+              'latitude': parseFloat(lat),
+              'longitude': parseFloat(lng),
+              'title': title
+            })
+          }
+
+          getArtesaniasPoints = async () => {
+            artesanias = await getData('ArtesaniaArtesano')
+            artesanos = await getData('Artesanos')
+            artesanias = await artesanias.map(artesania => {
+              artesanos.forEach(artesano => {
+                if (artesania.fields.Artesano.indexOf(artesano.id)) {
+                  artesania.fields.artesano = artesano.fields
+                }
+              })
+              addPoint(artesania.fields.artesano.Latitud, artesania.fields.artesano.Longitud, artesania.fields.Artesania)
+              return artesania
+            })
+            getCircle('#1e7123')
             // Set property fields
-            imageSeriesTemplate.propertyFields.latitude = "latitude";
-            imageSeriesTemplate.propertyFields.longitude = "longitude";
 
-            imageSeries.data = [{
+            /*imageSeries.data = [{
               "latitude": 25.438323,
               "longitude": -100.973678,
               "title": "One"
@@ -543,20 +872,26 @@
               "latitude": 19.566519,
               "longitude": -101.706829,
               "title": "Three"
-            }];
-          });
-          polygonTemplate.tooltipText = "{name}";
-          polygonTemplate.fill = am4core.color("#f5f5f5");
+            }];*/
+          }
 
-          // Create hover state and set alternative fill color
-          let hs = polygonTemplate.states.create("hover");
-          hs.properties.fill = am4core.color("#ceedce");
+          getEstados = async () => {
+            estados = await getData('Estados')
+          }
 
-          // Bind "fill" property to "fill" key in data
-          polygonTemplate.propertyFields.fill = "fill";
+          initialPoints = () => {
+            imageSeries = chart.series.push(new am4maps.MapImageSeries())
+            // Create a circle image in image series template so it gets replicated to all new images
+            imageSeriesTemplate = imageSeries.mapImages.template
+            getCircle('#1e7bc8')
+            getEstados()
+            imageSeriesTemplate.propertyFields.latitude = 'latitude'
+            imageSeriesTemplate.propertyFields.longitude = 'longitude'
+            getArtesaniasPoints()
+            getPointsLugaresDeElaboracion()
+          }
 
-          // Create image series
-
+          initialPoints()
 
         </script>
       </div>
