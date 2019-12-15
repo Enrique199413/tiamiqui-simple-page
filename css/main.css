@@ -434,3 +434,21 @@ profile:hover .profile__group{
   margin: auto;
 }
 
+body, input, textarea, button, select {
+  font-size: 15px !important;
+  font-family: "Basic Commercial",sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  color: #5ca9e1 !important;
+  line-height: 1.5 !important;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  margin: 0 !important;
+  font-family: Chivo,sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

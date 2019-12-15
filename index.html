@@ -411,7 +411,15 @@
           .searchContainer {
             display: flex;
             justify-content: space-between;
+            margin: 0 auto;
+            padding: 1rem;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
           }
+
+          .searchContainer > h3 {
+            margin: 0 !important;
+          }
+
           .artesania, .lugar {
             background-repeat: no-repeat;
             background-size: cover !important;
@@ -428,28 +436,6 @@
           .lugar > .details-about-lugar {
             font-size: large !important;
             margin: 0 3rem;
-          }
-
-          .glider-track {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            z-index: 1;
-          }
-          .glider-slide {
-            min-height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #f5f5f5;
-            border-bottom: 0;
-          }
-          .glider-contain {
-            margin-bottom: 25px;
-          }
-          .glider-next, .glider-prev {
-            margin: 2rem !important;
           }
           .main-title {
             position: fixed;
@@ -513,13 +499,29 @@
             margin: 2em auto 0;
             width: 320px;
           }
+          .flex-container-wrap {
+            flex-wrap: wrap;
+            display: flex;
+          }
+          .item {
+            width: 24rem;
+            height: 24rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          }
+          .itemclick {
+            width: auto;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center;
+            text-transform: none;
+            letter-spacing: normal;
+            font-family: inherit;
+          }
 
         </style>
-        <script src="js/vendor/airtable.browser.js"></script>
-        <script src="js/vendor/glider.min.js"></script>
-        <link rel="stylesheet" href="js/vendor/glider.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="js/main.js"></script>
         <div class="section-header text-center">
           <h2>Mapa de nuestros artesanos</h2>
         </div>
@@ -528,19 +530,30 @@
             <div class="container-details main-title">
               <h2 id="title"></h2>
             </div>
+            <div id="buttons">
+              <select id="tipoArtesania" multiple="multiple">
+                <option value="cheese">Cheese</option>
+                <option value="tomatoes">Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+              </select>
+              <select id="grupoEtnico" multiple="multiple">
+                <option value="cheese">Cheese</option>
+                <option value="tomatoes">Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+              </select>
+            </div>
             <div class="container-details">
               <div class="searchContainer">
                 <h3>Artesanías</h3>
 <!--                <input type="text" placeholder="Buscar artesania"/>-->
               </div>
-              <div data-name="Single Item" class="glider-contain">
-                <div class="gradient-border-bottom">
-                  <div class="gradient-border">
-                    <div class="glider" id="artesanias">
-                    </div>
-                  </div>
-                </div>
-                <div class="dots" id="dots-artesanias"></div>
+              <div class="flex-container-wrap" id="artesanias">
               </div>
             </div>
             <div class="container-details">
@@ -548,44 +561,25 @@
                 <h3>Lugares de Elaboración</h3>
 <!--                <input type="text" placeholder="Buscar lugar de elaboración"/>-->
               </div>
-              <div data-name="Single Item" class="glider-contain">
-                <div class="gradient-border-bottom">
-                  <div class="gradient-border">
-                    <div class="glider" id="lugares">
-                    </div>
-                  </div>
-                </div>
-                <div class="dots" id="dots-lugares"></div>
-              </div>
-            </div>
-            <div class="container-details">
-              <div class="searchContainer">
-                <h3>Artesanos</h3>
-<!--                <input type="text" placeholder="Buscar artesano"/>-->
-              </div>
-              <div data-name="Single Item" class="glider-contain">
-                <div class="gradient-border-bottom">
-                  <div class="gradient-border">
-                    <div class="glider" id="artesanos">
-                    </div>
-                  </div>
-                </div>
-                <div class="dots" id="dots-artesanos"></div>
+              <div class="flex-container-wrap" id="lugares">
               </div>
             </div>
           </div>
           <div class="container-interactive" id="map-tiamiqui"></div>
         </div>
-        <!-- CSS -->
-        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-        <!-- JavaScript -->
-        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
         <script src="https://www.amcharts.com/lib/4/core.js"></script>
         <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
         <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
-
         <script src="https://www.amcharts.com/lib/4/maps.js"></script>
         <script src="https://www.amcharts.com/lib/4/geodata/mexicoHigh.js"></script>
+        <script src="js/vendor/airtable.browser.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+        <script src="js/main.js"></script>
 
         <script>
           let mapCountries = []
@@ -598,7 +592,8 @@
           let estados = []
           let artesanias = []
           let artesanos = []
-          let gliders = [];
+          let pointToResult = {}
+          let currentPopup
 
           createGlider = (id) => {
 
@@ -680,7 +675,7 @@
               } else {
                 finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
               }
-              htmlFromArtesania += `<div class="artesania" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
+              htmlFromArtesania += `<div class="artesania item" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
                 url(${finalImagen})" onclick="loadModal('${artesania.id}')">
                 ${artesania.fields.Artesania}
               </div>`
@@ -692,10 +687,11 @@
               } else {
                 finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
               }
-              htmlFromLugares += `<div class="lugar" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
-                url(${finalImagen})" onclick="loadModal('${lugar.id}')">
+              htmlFromLugares += `<div class="lugar item" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
+                url(${finalImagen})" onclick="loadModal('${lugar.id}')"
+                onmouseenter="addAnimationPoint('${lugar.id}')"
+                onmouseleave="removeAnimationPoint('${lugar.id}')">
                 ${lugar.fields.Localidad}
-                <div class="details-about-lugar">${lugar.fields.descripcion !== undefined ? lugar.fields.descripcion : ''}</div>
               </div>`
             })
 
@@ -710,35 +706,9 @@
                 <div class="page__container">
                   <article class="profile">
                     <header class="profile__header">
-                      <img src="${finalImagen}" class="profile__avatar" alt="avatar of Stas Melnikov">
+                      <img src="${finalImagen}" class="profile__avatar item" alt="avatar of Stas Melnikov">
                       <h3 class="profile__name">${artesano.fields.Nombre}</h3>
                     </header>
-<!--                    <div class="profile__stats">-->
-<!--                      <div class="profile__group">-->
-<!--                        <span class="profile__value">85%</span>-->
-<!--                        <span class="profile__param">HTML</span>-->
-<!--                      </div>-->
-<!--                      <div class="profile__group">-->
-<!--                        <span class="profile__value">90%</span>-->
-<!--                        <span class="profile__param">CSS</span>-->
-<!--                      </div>-->
-<!--                      <div class="profile__group">-->
-<!--                        <span class="profile__value">85%</span>-->
-<!--                        <span class="profile__param">Web-Design</span>-->
-<!--                      </div>-->
-<!--                      <div class="profile__group">-->
-<!--                        <span class="profile__value">98%</span>-->
-<!--                        <span class="profile__param">Animation</span>-->
-<!--                      </div>-->
-<!--                      <div class="profile__group">-->
-<!--                        <span class="profile__value">52%</span>-->
-<!--                        <span class="profile__param">Javascript</span>-->
-<!--                      </div>-->
-<!--                      <div class="profile__group">-->
-<!--                        <span class="profile__value">10%</span>-->
-<!--                        <span class="profile__param">PHP</span>-->
-<!--                      </div>-->
-<!--                    </div>-->
                     <div class="profile__socials">
                       <div></div>
                     </div>
@@ -750,16 +720,46 @@
             document.querySelector('#title').innerHTML = name
             document.querySelector('#artesanias').innerHTML = htmlFromArtesania
             document.querySelector('#lugares').innerHTML = htmlFromLugares
-            document.querySelector('#artesanos').innerHTML = htmlFromArtesanos
-            setTimeout(() => {
-              gliders.push(createGlider('artesanias'));
-              gliders.push(createGlider('lugares'));
-              gliders.push(createGlider('artesanos'));
-              gliders.forEach(glider => {
-                glider.refresh(true)
-              })
-            }, 500)
+            // document.querySelector('#artesanos').innerHTML = htmlFromArtesanos
 
+          }
+
+          addAnimationPoint = async(place) => {
+            let placeInfo = lugaresDeElaboracion.filter(lugar => lugar.id === place)[0]
+            console.log('pinta punto', placeInfo, place);
+            let points = chart.series.values.filter(serie => serie.className === 'MapImageSeries')
+            await points.forEach((point) => {
+              point.mapImages.values.forEach(innerPoint => {
+                if (innerPoint.dataItem.dataContext.id === place) {
+                  pointToResult = innerPoint
+                }
+              })
+            })
+            pointToResult.tooltipText = placeInfo.fields.Localidad
+            console.log(pointToResult)
+            currentPopup = pointToResult.tooltip.openPopup(placeInfo.fields.descripcion !== undefined ? placeInfo.fields.descripcion : '', placeInfo.fields.Localidad)
+            currentPopup.top = 1;
+            pointToResult.toFront()
+            pointToResult.children.values.forEach(bolita => {
+              bolita.radius = 8
+              bolita.strokeWidth = 8
+              bolita.fill = am4core.color('#1e7bc8')
+            })
+            chart.zoomToMapObject(pointToResult)
+            //pointToResult.tooltip.appear()
+            //pointToResult.tooltip.show()
+            // addPoint()
+          }
+
+          removeAnimationPoint = (place) => {
+            console.log('quita punto', place);
+            //pointToResult.tooltip.hide()
+            currentPopup.close()
+            pointToResult.children.values.forEach(bolita => {
+              bolita.radius = 4
+              bolita.strokeWidth = 2
+              bolita.fill = am4core.color('#dd9a19')
+            })
           }
 
           createNewPoints = () => {
@@ -771,7 +771,6 @@
               // console.log(country.dataItem.dataContext.id)
               country.isActive = !country.isActive
             })
-            console.log(imageSeries.data, imageSeries.addData)
           }
 
           resetAllStates = () => {
@@ -800,10 +799,6 @@
           })
 
           cleanFilterDiv = () => {
-            gliders.forEach(glider => {
-              glider.destroy()
-            })
-            gliders = [];
             document.querySelector('#artesanias').innerHTML = ''
             document.querySelector('#lugares').innerHTML = ''
             return Promise.resolve()
@@ -821,7 +816,7 @@
           getPointsLugaresDeElaboracion = async () => {
             lugaresDeElaboracion = await getData('Lugar de elaboración de artesanía')
             lugaresDeElaboracion.forEach(lugar => {
-              addPoint(lugar.fields.Latitud, lugar.fields.Longitud, lugar.fields.Localidad)
+              addPoint(lugar.fields.Latitud, lugar.fields.Longitud, lugar.fields.Localidad, lugar.id)
             })
             getCircle('#dd9a19')
           }
@@ -837,11 +832,12 @@
             return circle
           }
 
-          addPoint = (lat, lng, title) => {
-            imageSeries.addData({
+          addPoint = (lat, lng, title, id) => {
+            return imageSeries.addData({
               'latitude': parseFloat(lat),
               'longitude': parseFloat(lng),
-              'title': title
+              'title': title,
+              'id': id
             })
           }
 
@@ -854,7 +850,7 @@
                   artesania.fields.artesano = artesano.fields
                 }
               })
-              addPoint(artesania.fields.artesano.Latitud, artesania.fields.artesano.Longitud, artesania.fields.Artesania)
+              addPoint(artesania.fields.artesano.Latitud, artesania.fields.artesano.Longitud, artesania.fields.Artesania, artesania.id)
               return artesania
             })
             getCircle('#1e7123')
@@ -892,6 +888,31 @@
           }
 
           initialPoints()
+          actionWhenClickOnMultiselect = (element, checked) => {
+            if (checked === true) {
+              //action taken here if true
+            }
+            else if (checked === false) {
+              if (confirm('Do you wish to deselect the element?')) {
+                //action taken here
+              }
+              else {
+                $("#example-confirmation").multiselect('select', element.val());
+              }
+            }
+          }
+          jQuery('#tipoArtesania').multiselect({
+            onChange: actionWhenClickOnMultiselect,
+            templates: {
+              button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Tipo de artesanía</span>'
+            }
+          })
+          jQuery('#grupoEtnico').multiselect({
+            onChange: actionWhenClickOnMultiselect,
+            templates: {
+              button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Grupo Étnico</span>'
+            }
+          })
 
         </script>
       </div>
