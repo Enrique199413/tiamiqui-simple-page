@@ -520,10 +520,97 @@
             letter-spacing: normal;
             font-family: inherit;
           }
+          .tingle-modal:before {
+            -webkit-backdrop-filter: blur(2px) !important;
+            backdrop-filter: blur(2px) !important;
+          }
+
+          .tingle-modal {
+            background: rgba(0,0,0,.2) !important;
+          }
+          .artesano-imagen {
+            width: 11rem;
+            background-size: cover !important;
+            height: 11rem;
+            background-position: center !important;
+            border-radius: 50%;
+          }
+
+          .localidad-imagen {
+            width: 11rem;
+            background-size: cover !important;
+            height: 11rem;
+            background-position: center !important;
+          }
+          .flex-column {
+            display: flex;
+            flex-direction: column;
+
+          }
+          .padding-left-3-rem {
+            padding-left: 3rem;
+          }
+
+          .artesano-header {
+            display: flex;
+          }
+          .name-artesania {
+            font-size: 2rem;
+            color: #3a3838;
+            margin-bottom: 2rem;
+          }
+          .artesano-name {
+            font-size: 1.6rem;
+            color: #5d5c5c;
+          }
+          .tingle-modal-box__content {
+            padding: 1rem 1rem !important;
+          }
+          .grupos-etnicos {
+            display: flex;
+          }
+
+          .ethnic-group {
+            padding: 0 1rem;
+          }
+
+          .artesano-bio {
+            color: gray;
+            max-height: 9rem;
+            overflow: scroll;
+          }
+
+          .artesano-content {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .tingle-btn--primary, .tingle-btn--danger {
+            color: white !important;
+          }
+
+          .artesanos {
+            display: flex;
+            justify-content: space-evenly;
+          }
+
+          .artesano-region {
+            width: 13rem;
+            height: 13rem;
+            background-position: center !important;
+            background-size: cover !important;
+            border-radius: 50%;
+          }
+          .subtitle {
+            padding: 1rem 0;
+            font-size: 2rem;
+            color: black;
+            text-align: center;
+          }
 
         </style>
         <div class="section-header text-center">
-          <h2>Mapa de nuestros artesanos</h2>
+          <h2>Mapa cultural de nuestras artesanías</h2>
         </div>
         <div class="container-tiamiqui">
           <div class="filter-container" id="filter-container">
@@ -540,6 +627,22 @@
                 <option value="onions">Onions</option>
               </select>
               <select id="grupoEtnico" multiple="multiple">
+                <option value="cheese">Cheese</option>
+                <option value="tomatoes">Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+              </select>
+              <select id="material" multiple="multiple">
+                <option value="cheese">Cheese</option>
+                <option value="tomatoes">Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+              </select>
+              <select id="idioma" multiple="multiple">
                 <option value="cheese">Cheese</option>
                 <option value="tomatoes">Tomatoes</option>
                 <option value="mozarella">Mozzarella</option>
@@ -579,6 +682,11 @@
         <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+        <script src="js/vendor/tingle.min.js"></script>
+        <script src="https://unpkg.com/popper.js@1"></script>
+        <script src="https://unpkg.com/tippy.js@5"></script>
+        <link rel="stylesheet" href="https://unpkg.com/tippy.js@5/dist/backdrop.css" />
+        <link rel="stylesheet" href="css/tingle.min.css">
         <script src="js/main.js"></script>
 
         <script>
@@ -594,18 +702,20 @@
           let artesanos = []
           let pointToResult = {}
           let currentPopup
+          let gruposEtnicos
 
-          createGlider = (id) => {
+          tippy.setDefaultProps({
+            delay: 50,
+            interactive: true,
+            boundary: 'scrollParent',
+            theme: 'light',
+            placement: 'bottom',
+          });
 
-            return new Glider(document.querySelector(`#${id}`), {
-              slidesToShow: 1,
-              dots: `#dots-${id}`,
-              draggable: true,
-              easing: function (x, t, b, c, d) {
-                return c * (t /= d) * t + b
-              }
-            })
-          }
+          // selección actual cuando se le da click
+          let artesaniasPorEstado = []
+          let lugaresPorEstado = []
+
           am4core.useTheme(am4themes_animated)
           am4core.useTheme(am4themes_material)
 
@@ -649,6 +759,7 @@
           // Create an event to toggle "active" state
 
           loadDataAbout = async (informacionEstado) => {
+            gruposEtnicos = await getData('GrupoEtnico')
             let estadoSeleccionado = estados.filter(estado => {
               return estado.fields.id === informacionEstado.id
             })
@@ -656,17 +767,12 @@
             let htmlFromLugares = ``
             let htmlFromArtesanos = ``
             let { name, id } = informacionEstado
-            let artesaniasPorEstado = await artesanias.filter(artesania => {
+            artesaniasPorEstado = await artesanias.filter(artesania => {
               return artesania.fields.artesano.Estado.indexOf(estadoSeleccionado[0].id) >= 0
             })
 
-            let lugaresPorEstado = await lugaresDeElaboracion.filter(lugar => {
+            lugaresPorEstado = await lugaresDeElaboracion.filter(lugar => {
               return lugar.fields.Estado.indexOf(estadoSeleccionado[0].id) >= 0
-            })
-
-            let artesanosPorEstado = await artesanos.filter(artesano => {
-              console.log(artesano)
-              return artesano.fields.Estado.indexOf(estadoSeleccionado[0].id) >= 0
             })
 
             artesaniasPorEstado.forEach(artesania => {
@@ -688,40 +794,136 @@
                 finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
               }
               htmlFromLugares += `<div class="lugar item" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
-                url(${finalImagen})" onclick="loadModal('${lugar.id}')"
+                url(${finalImagen})" onclick="loadModal('${lugar.id}', 2)"
                 onmouseenter="addAnimationPoint('${lugar.id}')"
                 onmouseleave="removeAnimationPoint('${lugar.id}')">
                 ${lugar.fields.Localidad}
               </div>`
             })
-
-            artesanosPorEstado.forEach(artesano => {
-              if (artesano.fields.imagen) {
-                finalImagen = artesano.fields.imagen[0].thumbnails.large.url
-              } else {
-                finalImagen = 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
-              }
-              htmlFromArtesanos += `
-              <div class="page">
-                <div class="page__container">
-                  <article class="profile">
-                    <header class="profile__header">
-                      <img src="${finalImagen}" class="profile__avatar item" alt="avatar of Stas Melnikov">
-                      <h3 class="profile__name">${artesano.fields.Nombre}</h3>
-                    </header>
-                    <div class="profile__socials">
-                      <div></div>
-                    </div>
-                  </article>
-                </div>
-              </div>`
-            })
-
             document.querySelector('#title').innerHTML = name
             document.querySelector('#artesanias').innerHTML = htmlFromArtesania
             document.querySelector('#lugares').innerHTML = htmlFromLugares
-            // document.querySelector('#artesanos').innerHTML = htmlFromArtesanos
+          }
 
+          loadModal = (id, type = 1) => {
+            if (type === 2) {
+              // Lugar de elaboración
+              modal2.setContent(getLugarModalData(id))
+              modal2.open()
+            } else {
+              // Artesania
+              modal.setContent(getArtesaniaModalData(id))
+              modal.open()
+
+            }
+            tippy('[data-tippy-content]')
+          }
+
+          getLugarModalData = (id) => {
+            let {fields} = lugaresDeElaboracion.filter(lugar => lugar.id === id)[0]
+            let artesanosPorLugarSeleccionado
+            console.log(fields)
+            let finalHTMLGrupos = `Grupos étnicos de la región:`
+            let finalHTMLArtesano = ``
+
+            let gruposDelArtesano
+
+            if (fields.grupo) {
+              gruposDelArtesano = gruposEtnicos.filter(grupo => fields.grupo.indexOf(grupo.id) >= 0)
+              gruposDelArtesano.forEach(grupo => {
+                if (grupo.fields.description === undefined) {
+                  finalHTMLGrupos += `<div class="ethnic-group">${grupo.fields.grupo}</div>`
+                } else {
+                  finalHTMLGrupos += `<div class="ethnic-group" data-tippy-content="${grupo.fields.descripcion}">${grupo.fields.grupo}</div>`
+                }
+              })
+            }
+            if (fields.artesano) {
+              artesanosPorLugarSeleccionado = artesanos.filter(artesano => fields.artesano.indexOf(artesano.id) >= 0)
+              artesanosPorLugarSeleccionado.forEach(artesano => {
+                let finalImagenArtesano
+                if (artesano.fields['imagen']) {
+                  finalImagenArtesano = artesano.fields.imagen[0].thumbnails.large.url
+                } else {
+                  finalImagenArtesano = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
+                }
+                finalHTMLArtesano += `<div class="artesano-region" class="artesano-imagen" style="background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .1)),
+                  url(${finalImagenArtesano})" data-tippy-content="${artesano.fields.Nombre}"></div>`
+              })
+            }
+            let finalUrlLocalidad
+            //let artesanoSeleccionado = getArtesanoByArtesania(lugarSeleccionada.fields.Artesano[0])
+            if (fields['imagen']) {
+              finalUrlLocalidad = fields.imagen[0].thumbnails.large.url
+            } else {
+              finalUrlLocalidad = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
+            }
+
+
+            return `
+            <div class="info-artesanos">
+              <div class="artesano-header">
+                <div>
+                  <div class="localidad-imagen" style="background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .1)),
+                  url(${finalUrlLocalidad})"></div>
+                </div>
+                <div class="flex-column padding-left-3-rem">
+                  <div class="artesano-name">${fields.Localidad}</div>
+                  <div class="artesano-bio">${fields.descripcion}</div>
+                </div>
+              </div>
+              <div class="artesano-content">
+                <div></div>
+                <div class="grupos-etnicos">${finalHTMLGrupos}</div>
+              </div>
+              <div class="subtitle">Artesanos en ${fields.Localidad}</div>
+              <div class="artesanos">
+                ${finalHTMLArtesano}
+              </div>
+            </div>
+
+            `
+          }
+
+          getArtesanoByArtesania = (id) => {
+            return artesanos.filter(artesano => artesano.id === id)[0]
+          }
+
+          getArtesaniaModalData = (id) => {
+            let {fields} = artesaniasPorEstado.filter(artesania => artesania.id === id)[0]
+            let finalHTMLGrupos = `Grupos étnicos:`
+            let gruposDelArtesano = gruposEtnicos.filter(grupo => fields.artesano.grupo.indexOf(grupo.id) >= 0)
+            let finalUrlArtesano
+            //let artesanoSeleccionado = getArtesanoByArtesania(artesaniaSeleccionada.fields.Artesano[0])
+            if (fields.artesano['imagen']) {
+              finalUrlArtesano = fields.artesano.imagen[0].thumbnails.large.url
+            } else {
+              finalUrlArtesano = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
+            }
+
+            gruposDelArtesano.forEach(grupo => {
+              finalHTMLGrupos += `<div class="ethnic-group" interactive="true" data-tippy-content="${grupo.fields.descripcion}">${grupo.fields.grupo}</div>`
+            })
+            return `
+            <div class="name-artesania">${fields.Artesania}</div>
+            <div class="info-artesano">
+              <div class="artesano-header">
+                <div>
+                  <div class="artesano-imagen" style="background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .1)),
+                  url(${finalUrlArtesano})"></div>
+                </div>
+                <div class="flex-column padding-left-3-rem">
+                  <div class="artesano-name">${fields.artesano.Nombre}</div>
+                  <div class="artesano-bio">${fields.artesano.bio}</div>
+                </div>
+              </div>
+              <div class="artesano-content">
+                <div></div>
+                <div class="grupos-etnicos">${finalHTMLGrupos}</div>
+              </div>
+            </div>
+
+            `
           }
 
           addAnimationPoint = async(place) => {
@@ -907,12 +1109,74 @@
               button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Tipo de artesanía</span>'
             }
           })
+          jQuery('#material').multiselect({
+            onChange: actionWhenClickOnMultiselect,
+            templates: {
+              button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Material</span>'
+            }
+          })
           jQuery('#grupoEtnico').multiselect({
             onChange: actionWhenClickOnMultiselect,
             templates: {
               button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Grupo Étnico</span>'
             }
           })
+          jQuery('#idioma').multiselect({
+            onChange: actionWhenClickOnMultiselect,
+            templates: {
+              button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Idioma</span>'
+            }
+          })
+
+          // instanciate new modal
+          var modal = new tingle.modal({
+            footer: true,
+            stickyFooter: false,
+            closeMethods: ['button'],
+            closeLabel: "Close",
+            cssClass: ['custom-class-1', 'custom-class-2'],
+            onOpen: function() {
+              console.log('modal open');
+            },
+            onClose: function() {
+              console.log('modal closed');
+            },
+            beforeClose: function() {
+              // here's goes some logic
+              // e.g. save content before closing the modal
+              return true; // close the modal
+            }
+          });
+
+          modal.addFooterBtn('Comprar', 'tingle-btn tingle-btn--primary', function(e) {
+            window.location.href = 'https://store.tiamiqui.com/collections/all'
+            // here goes some logic
+            modal.close()
+          });
+          modal.addFooterBtn('Regresar', 'tingle-btn tingle-btn--danger', function(e) {
+            modal.close()
+          });
+          var modal2 = new tingle.modal({
+            footer: true,
+            stickyFooter: false,
+            closeMethods: ['button'],
+            closeLabel: "Close",
+            cssClass: ['custom-class-1', 'custom-class-2'],
+            onOpen: function() {
+              console.log('modal open');
+            },
+            onClose: function() {
+              console.log('modal closed');
+            },
+            beforeClose: function() {
+              // here's goes some logic
+              // e.g. save content before closing the modal
+              return true; // close the modal
+            }
+          });
+          modal2.addFooterBtn('Regresar', 'tingle-btn tingle-btn--danger', function(e) {
+            modal2.close()
+          });
 
         </script>
       </div>
