@@ -504,8 +504,8 @@
             display: flex;
           }
           .item {
-            width: 24rem;
-            height: 24rem;
+            width: 20rem;
+            height: 20rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -580,6 +580,10 @@
             overflow: scroll;
           }
 
+          #buttons {
+            display: flex;
+          }
+
           .artesano-content {
             display: flex;
             justify-content: space-between;
@@ -618,37 +622,16 @@
               <h2 id="title"></h2>
             </div>
             <div id="buttons">
-              <select id="tipoArtesania" multiple="multiple">
-                <option value="cheese">Cheese</option>
-                <option value="tomatoes">Tomatoes</option>
-                <option value="mozarella">Mozzarella</option>
-                <option value="mushrooms">Mushrooms</option>
-                <option value="pepperoni">Pepperoni</option>
-                <option value="onions">Onions</option>
+              <select id="lugarArtesania" multiple="multiple">
               </select>
-              <select id="grupoEtnico" multiple="multiple">
-                <option value="cheese">Cheese</option>
-                <option value="tomatoes">Tomatoes</option>
-                <option value="mozarella">Mozzarella</option>
-                <option value="mushrooms">Mushrooms</option>
-                <option value="pepperoni">Pepperoni</option>
-                <option value="onions">Onions</option>
+              <select id="tipoArtesania" multiple="multiple">
+
               </select>
               <select id="material" multiple="multiple">
-                <option value="cheese">Cheese</option>
-                <option value="tomatoes">Tomatoes</option>
-                <option value="mozarella">Mozzarella</option>
-                <option value="mushrooms">Mushrooms</option>
-                <option value="pepperoni">Pepperoni</option>
-                <option value="onions">Onions</option>
+              </select>
+              <select id="grupoEtnico" multiple="multiple">
               </select>
               <select id="idioma" multiple="multiple">
-                <option value="cheese">Cheese</option>
-                <option value="tomatoes">Tomatoes</option>
-                <option value="mozarella">Mozzarella</option>
-                <option value="mushrooms">Mushrooms</option>
-                <option value="pepperoni">Pepperoni</option>
-                <option value="onions">Onions</option>
               </select>
             </div>
             <div class="container-details">
@@ -657,14 +640,6 @@
 <!--                <input type="text" placeholder="Buscar artesania"/>-->
               </div>
               <div class="flex-container-wrap" id="artesanias">
-              </div>
-            </div>
-            <div class="container-details">
-              <div class="searchContainer">
-                <h3>Lugares de Elaboración</h3>
-<!--                <input type="text" placeholder="Buscar lugar de elaboración"/>-->
-              </div>
-              <div class="flex-container-wrap" id="lugares">
               </div>
             </div>
           </div>
@@ -677,11 +652,8 @@
         <script src="https://www.amcharts.com/lib/4/geodata/mexicoHigh.js"></script>
         <script src="js/vendor/airtable.browser.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.css" rel="stylesheet"></link>
         <script src="js/vendor/tingle.min.js"></script>
         <script src="https://unpkg.com/popper.js@1"></script>
         <script src="https://unpkg.com/tippy.js@5"></script>
@@ -696,13 +668,28 @@
           var imageSeries
           let currentActive
           let imageSeriesTemplate
-          let lugaresDeElaboracion = []
           let estados = []
+
+
           let artesanias = []
           let artesanos = []
+          let lugaresElaboracion = []
+          let materiales = []
+          let idiomas = []
+          let tiposDeArtesania = []
+          let gruposEtnicos = []
+
+
+          let gruposEtnicosDisponibles = {}
+          let artesanosDisponibles = []
+          let tiposDeArtesaniaDisponibles = {}
+          let materialesDisponibles = {}
+          let lugaresElaboracionDisponibles = {}
+          let idiomasDisponibles = {}
+
+
           let pointToResult = {}
           let currentPopup
-          let gruposEtnicos
 
           tippy.setDefaultProps({
             delay: 50,
@@ -711,6 +698,17 @@
             theme: 'light',
             placement: 'bottom',
           });
+
+          init = async() => {
+            artesanos = await getData('Artesano')
+            idiomas = await getData('Idioma')
+            gruposEtnicos = await getData('GrupoEtnico')
+            materiales = await getData('Material')
+            tiposDeArtesania = await getData('TipoArtesania')
+            lugaresDeElaboracion = await getData('LugaresElaboracionArtesania')
+          }
+
+          init();
 
           // selección actual cuando se le da click
           let artesaniasPorEstado = []
@@ -757,52 +755,159 @@
           activeState.properties.fill = am4core.color('#1e7bc8')
 
           // Create an event to toggle "active" state
-
           loadDataAbout = async (informacionEstado) => {
-            gruposEtnicos = await getData('GrupoEtnico')
+            artesanos = await artesanos.filter(artesano => artesanosDisponibles.indexOf(artesano.id) >= 0)
+            artesanos = await artesanos.map(artesano => {
+              gruposEtnicos.forEach(grupoEtnico => {
+                if (artesano.fields.grupo.indexOf(grupoEtnico.id) >= 0) {
+                  if (!gruposEtnicosDisponibles[grupoEtnico.id]) {
+                    gruposEtnicosDisponibles[grupoEtnico.id] = grupoEtnico.fields
+                  }
+                  artesano.fields.gruposEtnicos = artesano.fields.gruposEtnicos !== undefined ? artesano.fields.gruposEtnicos : []
+                  artesano.fields.gruposEtnicos.push(grupoEtnico.fields)
+                }
+              })
+              idiomas.forEach(idioma => {
+                if (artesano.fields.idioma.indexOf(idioma.id) >= 0) {
+                  if (!idiomasDisponibles[idioma.id]) {
+                    idiomasDisponibles[idioma.id] = idioma.fields
+                  }
+                  artesano.fields.idiomas = artesano.fields.idiomas !== undefined ? artesano.fields.idiomas : []
+                  artesano.fields.idiomas.push(idioma.fields)
+                }
+              })
+              lugaresDeElaboracion.forEach(lugar => {
+                if (artesano.fields.lugarElaboracion.indexOf(lugar.id) >= 0) {
+                  if (!lugaresElaboracionDisponibles[lugar.id]) {
+                    lugaresElaboracionDisponibles[lugar.id] = lugar.fields
+                  }
+                  artesano.fields.lugares = artesano.fields.lugares !== undefined ? artesano.fields.lugares : []
+                  artesano.fields.lugares.push(lugar.fields)
+                }
+              })
+              return artesano
+            })
+            artesanias = await artesanias.map(artesania => {
+              console.log(artesania)
+              artesanos.forEach(artesano => {
+                if (artesania.fields.Artesano.indexOf(artesano.id)) {
+                  artesania.fields.artesano = artesano.fields
+                }
+              })
+              materiales.forEach(material => {
+                if (artesania.fields.materiales.indexOf(material.id) >= 0) {
+                  if (!materialesDisponibles[material.id]) {
+                    materialesDisponibles[material.id] = material.fields
+                  }
+                  artesania.fields.materialesArtesania = artesania.fields.materialesArtesania !== undefined ? artesania.fields.materialesArtesania : []
+                  artesania.fields.materialesArtesania.push(material.fields)
+                }
+              })
+
+              tiposDeArtesania.forEach(tipoArtesania => {
+                if (artesania.fields.tipoArtesania.indexOf(tipoArtesania.id) >= 0) {
+                  if (!tiposDeArtesaniaDisponibles[tipoArtesania.id]) {
+                    tiposDeArtesaniaDisponibles[tipoArtesania.id] = tipoArtesania.fields
+                  }
+                  artesania.fields.tipos = artesania.fields.tipos !== undefined ? artesania.fields.tipos : []
+                  artesania.fields.tipos.push(tipoArtesania.fields)
+                }
+              })
+
+              return artesania
+            })
+            let lugaresHTML = ``
+            Object.keys(lugaresElaboracionDisponibles).forEach((key, index) => {
+              lugaresHTML += `<option value="${key}">${lugaresElaboracionDisponibles[key]['Localidad']}</option>`
+            })
+            document.querySelector('#lugarArtesania').innerHTML = lugaresHTML
+
+            new SlimSelect({
+              showSearch: false,
+              onChange: lugarArtesaniaChanges,
+              select: '#lugarArtesania',
+              placeholder: 'Lugar de elaboración de artesania'
+            })
+
+            let optionsTipos = ''
+            Object.keys(tiposDeArtesaniaDisponibles).forEach((key, index) => {
+              optionsTipos += `<option value="${key}">${tiposDeArtesaniaDisponibles[key]['tipo']}</option>`
+            })
+
+            document.querySelector('#tipoArtesania').innerHTML = optionsTipos
+
+            new SlimSelect({
+              showSearch: false,
+              onChange: tipoArtesaniaChanges,
+              select: '#tipoArtesania',
+              placeholder: 'Tipo de Artesanía'
+            })
+
+
+            let optionsMateriales = ''
+            Object.keys(materialesDisponibles).forEach((key, index) => {
+              optionsMateriales += `<option value="${key}">${materialesDisponibles[key]['material']}</option>`
+            })
+
+            document.querySelector('#material').innerHTML = optionsMateriales
+
+            new SlimSelect({
+              showSearch: false,
+              onChange: materialChanges,
+              select: '#material',
+              placeholder: 'Material'
+            })
+            let optionsGrupos = ''
+            Object.keys(gruposEtnicosDisponibles).forEach((key, index) => {
+              optionsGrupos += `<option value="${key}">${gruposEtnicosDisponibles[key]['grupo']}</option>`
+            })
+
+            document.querySelector('#grupoEtnico').innerHTML = optionsGrupos
+            new SlimSelect({
+              showSearch: false,
+              onChange: grupoEtnicoChanges,
+              select: '#grupoEtnico',
+              placeholder: 'Grupo Étnico'
+            })
+            let optionsIdioma = ''
+            Object.keys(idiomasDisponibles).forEach((key, index) => {
+              optionsIdioma += `<option value="${key}">${idiomasDisponibles[key]['idioma']}</option>`
+            })
+
+            document.querySelector('#idioma').innerHTML = optionsIdioma
+            new SlimSelect({
+              showSearch: false,
+              onChange: idiomaChanges,
+              select: '#idioma',
+              placeholder: 'Idioma'
+            })
             let estadoSeleccionado = estados.filter(estado => {
               return estado.fields.id === informacionEstado.id
             })
             let htmlFromArtesania = ``
-            let htmlFromLugares = ``
-            let htmlFromArtesanos = ``
-            let { name, id } = informacionEstado
+            let { name } = informacionEstado
             artesaniasPorEstado = await artesanias.filter(artesania => {
               return artesania.fields.artesano.Estado.indexOf(estadoSeleccionado[0].id) >= 0
             })
 
-            lugaresPorEstado = await lugaresDeElaboracion.filter(lugar => {
-              return lugar.fields.Estado.indexOf(estadoSeleccionado[0].id) >= 0
-            })
+
 
             artesaniasPorEstado.forEach(artesania => {
-              if (false) {
-                finalImagen = currentDataAboutClick.imagen[0].thumbnails.large.url
+              if (artesania.fields.imagen) {
+                finalImagen = artesania.fields.imagen[0].thumbnails.large.url
               } else {
                 finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
               }
               htmlFromArtesania += `<div class="artesania item" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
-                url(${finalImagen})" onclick="loadModal('${artesania.id}')">
+                url(${finalImagen})" onclick="loadModal('${artesania.id}')"
+                onmouseenter="addAnimationPoint('${artesania.id}')"
+                onmouseleave="removeAnimationPoint('${artesania.id}')">
                 ${artesania.fields.Artesania}
               </div>`
             })
 
-            lugaresPorEstado.forEach(lugar => {
-              if (lugar.fields.imagen) {
-                finalImagen = lugar.fields.imagen[0].thumbnails.large.url
-              } else {
-                finalImagen = 'https://source.unsplash.com/1600x900/?succulent,green,dark,table';
-              }
-              htmlFromLugares += `<div class="lugar item" style="background: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0, .3)),
-                url(${finalImagen})" onclick="loadModal('${lugar.id}', 2)"
-                onmouseenter="addAnimationPoint('${lugar.id}')"
-                onmouseleave="removeAnimationPoint('${lugar.id}')">
-                ${lugar.fields.Localidad}
-              </div>`
-            })
             document.querySelector('#title').innerHTML = name
             document.querySelector('#artesanias').innerHTML = htmlFromArtesania
-            document.querySelector('#lugares').innerHTML = htmlFromLugares
           }
 
           loadModal = (id, type = 1) => {
@@ -822,7 +927,6 @@
           getLugarModalData = (id) => {
             let {fields} = lugaresDeElaboracion.filter(lugar => lugar.id === id)[0]
             let artesanosPorLugarSeleccionado
-            console.log(fields)
             let finalHTMLGrupos = `Grupos étnicos de la región:`
             let finalHTMLArtesano = ``
 
@@ -889,6 +993,22 @@
             return artesanos.filter(artesano => artesano.id === id)[0]
           }
 
+          lugarArtesaniaChanges = (data) => {
+            console.log(data)
+          }
+          tipoArtesaniaChanges = (data) => {
+            console.log(data)
+          }
+          materialChanges = (data) => {
+            console.log(data)
+          }
+          grupoEtnicoChanges = (data) => {
+            console.log(data)
+          }
+          idiomaChanges = (data) => {
+            console.log(data)
+          }
+
           getArtesaniaModalData = (id) => {
             let {fields} = artesaniasPorEstado.filter(artesania => artesania.id === id)[0]
             let finalHTMLGrupos = `Grupos étnicos:`
@@ -905,7 +1025,13 @@
               finalHTMLGrupos += `<div class="ethnic-group" interactive="true" data-tippy-content="${grupo.fields.descripcion}">${grupo.fields.grupo}</div>`
             })
             return `
-            <div class="name-artesania">${fields.Artesania}</div>
+            <div>
+              <div class="name-artesania">${fields.Artesania}</div>
+              <div>${fields.precio}</div>
+            </div>
+            <div>
+              ${fields.descripcionlarga}
+            </div>
             <div class="info-artesano">
               <div class="artesano-header">
                 <div>
@@ -926,20 +1052,18 @@
             `
           }
 
-          addAnimationPoint = async(place) => {
-            let placeInfo = lugaresDeElaboracion.filter(lugar => lugar.id === place)[0]
-            console.log('pinta punto', placeInfo, place);
+          addAnimationPoint = async(idArtesania) => {
+            let artesaniaInfo = artesanias.filter(artesania => artesania.id === idArtesania)[0]
             let points = chart.series.values.filter(serie => serie.className === 'MapImageSeries')
             await points.forEach((point) => {
               point.mapImages.values.forEach(innerPoint => {
-                if (innerPoint.dataItem.dataContext.id === place) {
+                if (innerPoint.dataItem.dataContext.id === idArtesania) {
                   pointToResult = innerPoint
                 }
               })
             })
-            pointToResult.tooltipText = placeInfo.fields.Localidad
-            console.log(pointToResult)
-            currentPopup = pointToResult.tooltip.openPopup(placeInfo.fields.descripcion !== undefined ? placeInfo.fields.descripcion : '', placeInfo.fields.Localidad)
+            pointToResult.tooltipText = artesaniaInfo.fields.Artesania
+            currentPopup = pointToResult.tooltip.openPopup(artesaniaInfo.fields.descripcioncorta !== undefined ? artesaniaInfo.fields.descripcioncorta : '', artesaniaInfo.fields.Artesania)
             currentPopup.top = 1;
             pointToResult.toFront()
             pointToResult.children.values.forEach(bolita => {
@@ -954,7 +1078,6 @@
           }
 
           removeAnimationPoint = (place) => {
-            console.log('quita punto', place);
             //pointToResult.tooltip.hide()
             currentPopup.close()
             pointToResult.children.values.forEach(bolita => {
@@ -1002,7 +1125,6 @@
 
           cleanFilterDiv = () => {
             document.querySelector('#artesanias').innerHTML = ''
-            document.querySelector('#lugares').innerHTML = ''
             return Promise.resolve()
           }
           polygonTemplate.tooltipText = '{name}'
@@ -1016,9 +1138,9 @@
           polygonTemplate.propertyFields.fill = 'fill'
 
           getPointsLugaresDeElaboracion = async () => {
-            lugaresDeElaboracion = await getData('Lugar de elaboración de artesanía')
+            lugaresDeElaboracion = await getData('LugaresElaboracionArtesania')
             lugaresDeElaboracion.forEach(lugar => {
-              addPoint(lugar.fields.Latitud, lugar.fields.Longitud, lugar.fields.Localidad, lugar.id)
+              //addPoint(lugar.fields.Latitud, lugar.fields.Longitud, lugar.fields.Localidad, lugar.id)
             })
             getCircle('#dd9a19')
           }
@@ -1044,16 +1166,19 @@
           }
 
           getArtesaniasPoints = async () => {
-            artesanias = await getData('ArtesaniaArtesano')
-            artesanos = await getData('Artesanos')
-            artesanias = await artesanias.map(artesania => {
-              artesanos.forEach(artesano => {
-                if (artesania.fields.Artesano.indexOf(artesano.id)) {
-                  artesania.fields.artesano = artesano.fields
-                }
-              })
-              addPoint(artesania.fields.artesano.Latitud, artesania.fields.artesano.Longitud, artesania.fields.Artesania, artesania.id)
-              return artesania
+            // let artesanias = []
+            // let artesanos = []
+            // let lugaresElaboracion = []
+            // let materiales = []
+            // let idiomas = []
+            // let tiposDeArtesania = []
+            // let gruposEtnicos = []
+            artesanias = await getData('Artesania')
+
+            artesanias.forEach(artesania => {
+
+              artesanosDisponibles.push(artesania.fields.Artesano[0])
+              addPoint(artesania.fields.latitud, artesania.fields.longitud, artesania.fields.Artesania, artesania.id)
             })
             getCircle('#1e7123')
             // Set property fields
@@ -1090,43 +1215,6 @@
           }
 
           initialPoints()
-          actionWhenClickOnMultiselect = (element, checked) => {
-            if (checked === true) {
-              //action taken here if true
-            }
-            else if (checked === false) {
-              if (confirm('Do you wish to deselect the element?')) {
-                //action taken here
-              }
-              else {
-                $("#example-confirmation").multiselect('select', element.val());
-              }
-            }
-          }
-          jQuery('#tipoArtesania').multiselect({
-            onChange: actionWhenClickOnMultiselect,
-            templates: {
-              button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Tipo de artesanía</span>'
-            }
-          })
-          jQuery('#material').multiselect({
-            onChange: actionWhenClickOnMultiselect,
-            templates: {
-              button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Material</span>'
-            }
-          })
-          jQuery('#grupoEtnico').multiselect({
-            onChange: actionWhenClickOnMultiselect,
-            templates: {
-              button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Grupo Étnico</span>'
-            }
-          })
-          jQuery('#idioma').multiselect({
-            onChange: actionWhenClickOnMultiselect,
-            templates: {
-              button: '<span class="multiselect dropdown-toggle itemclick" data-toggle="dropdown">Idioma</span>'
-            }
-          })
 
           // instanciate new modal
           var modal = new tingle.modal({
