@@ -937,7 +937,7 @@
               let gruposValidosPorArtesania = []
 
               if (lugaresFilter.length > 0) {
-                lugaresValidosPorArtesania = lugaresFilter.filter(lugar => fields.artesano.lugarElaboracion.indexOf(lugar.value) >= 0)
+                lugaresValidosPorArtesania = lugaresFilter.filter(lugar => fields.lugarelaboracion.indexOf(lugar.value) >= 0)
                 artesaniaApply = lugaresValidosPorArtesania.length > 0
               }
               if (tipoArtesaniaFilter.length > 0 && artesaniaApply) {
