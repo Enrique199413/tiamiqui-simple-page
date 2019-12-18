@@ -778,15 +778,6 @@
                   artesano.fields.idiomas.push(idioma.fields)
                 }
               })
-              lugaresDeElaboracion.forEach(lugar => {
-                if (artesano.fields.lugarElaboracion.indexOf(lugar.id) >= 0) {
-                  if (!lugaresElaboracionDisponibles[lugar.id]) {
-                    lugaresElaboracionDisponibles[lugar.id] = lugar.fields
-                  }
-                  artesano.fields.lugares = artesano.fields.lugares !== undefined ? artesano.fields.lugares : []
-                  artesano.fields.lugares.push(lugar.fields)
-                }
-              })
               return artesano
             })
             artesanias = await artesanias.map(artesania => {
@@ -803,6 +794,16 @@
                   }
                   artesania.fields.materialesArtesania = artesania.fields.materialesArtesania !== undefined ? artesania.fields.materialesArtesania : []
                   artesania.fields.materialesArtesania.push(material.fields)
+                }
+              })
+
+              lugaresDeElaboracion.forEach(lugar => {
+                if (artesania.fields.lugarelaboracion.indexOf(lugar.id) >= 0) {
+                  if (!lugaresElaboracionDisponibles[lugar.id]) {
+                    lugaresElaboracionDisponibles[lugar.id] = lugar.fields
+                  }
+                  artesania.fields.lugares = artesania.fields.lugares !== undefined ? artesania.fields.lugares : []
+                  artesania.fields.lugares.push(lugar.fields)
                 }
               })
 
