@@ -679,6 +679,8 @@
           let tiposDeArtesania = []
           let gruposEtnicos = []
 
+          let finalRenderResults = []
+
 
           let gruposEtnicosDisponibles = {}
           let artesanosDisponibles = []
@@ -892,6 +894,15 @@
 
 
 
+
+
+            document.querySelector('#title').innerHTML = name
+            document.querySelector('#artesanias').innerHTML = getInformationForArtesanias(artesanias)
+          }
+
+          getInformationForArtesanias = (artesanias) => {
+            let htmlFromArtesania = ``
+            let finalImagen = ''
             artesanias.forEach(artesania => {
               if (artesania.fields.imagen) {
                 finalImagen = artesania.fields.imagen[0].thumbnails.large.url
@@ -906,9 +917,81 @@
               </div>`
             })
 
-            document.querySelector('#title').innerHTML = name
-            document.querySelector('#artesanias').innerHTML = htmlFromArtesania
+            return htmlFromArtesania
           }
+
+          let lugaresFilter = []
+          let tipoArtesaniaFilter = []
+          let materialFilter = []
+          let grupoEtnicoFilter = []
+          let idiomaFilter = []
+
+          filterArtesania = () => {
+            finalRenderResults = artesanias.filter(artesania => {
+              let {fields} = artesania
+              let artesaniaApply = true
+              let lugaresValidosPorArtesania = []
+              let tiposValidosPorArtesania = []
+              let materialesValidosPorArtesania = []
+              let idiomasValidosPorArtesania = []
+              let gruposValidosPorArtesania = []
+
+              if (lugaresFilter.length > 0) {
+                lugaresValidosPorArtesania = lugaresFilter.filter(lugar => fields.artesano.lugarElaboracion.indexOf(lugar.value) >= 0)
+                artesaniaApply = lugaresValidosPorArtesania.length > 0
+              }
+              if (tipoArtesaniaFilter.length > 0 && artesaniaApply) {
+                tiposValidosPorArtesania = tipoArtesaniaFilter.filter(tipo => fields.tipoArtesania.indexOf(tipo.value) >= 0)
+                artesaniaApply = tiposValidosPorArtesania.length > 0
+              }
+
+              if (materialFilter.length > 0 && artesaniaApply) {
+                materialesValidosPorArtesania = materialFilter.filter(material => fields.materiales.indexOf(material.value) >= 0)
+                artesaniaApply = materialesValidosPorArtesania.length > 0
+              }
+
+              if (idiomaFilter.length > 0 && artesaniaApply) {
+                idiomasValidosPorArtesania = idiomaFilter.filter(idioma => fields.artesano.idioma.indexOf(idioma.value) >= 0)
+                artesaniaApply = idiomasValidosPorArtesania.length > 0
+              }
+
+              if (grupoEtnicoFilter.length > 0 && artesaniaApply) {
+                gruposValidosPorArtesania = grupoEtnicoFilter.filter(grupo => fields.artesano.grupo.indexOf(grupo.value) >= 0)
+                artesaniaApply = gruposValidosPorArtesania.length > 0
+              }
+              return artesaniaApply
+            })
+
+            return finalRenderResults
+          }
+
+          lugarArtesaniaChanges = (data) => {
+            console.log(data)
+            lugaresFilter = data
+            document.querySelector('#artesanias').innerHTML = getInformationForArtesanias(filterArtesania(data))
+          }
+          tipoArtesaniaChanges = (data) => {
+            console.log(data)
+            tipoArtesaniaFilter = data
+            document.querySelector('#artesanias').innerHTML = getInformationForArtesanias(filterArtesania(data))
+          }
+          materialChanges = (data) => {
+            console.log(data)
+            materialFilter = data
+            document.querySelector('#artesanias').innerHTML = getInformationForArtesanias(filterArtesania(data))
+          }
+          grupoEtnicoChanges = (data) => {
+            console.log(data)
+            grupoEtnicoFilter = data
+            document.querySelector('#artesanias').innerHTML = getInformationForArtesanias(filterArtesania(data))
+          }
+          idiomaChanges = (data) => {
+            console.log(data)
+            idiomaFilter = data
+            document.querySelector('#artesanias').innerHTML = getInformationForArtesanias(filterArtesania(data))
+          }
+
+
 
           loadModal = (id, type = 1) => {
             if (type === 2) {
@@ -993,24 +1076,8 @@
             return artesanos.filter(artesano => artesano.id === id)[0]
           }
 
-          lugarArtesaniaChanges = (data) => {
-            console.log(data)
-          }
-          tipoArtesaniaChanges = (data) => {
-            console.log(data)
-          }
-          materialChanges = (data) => {
-            console.log(data)
-          }
-          grupoEtnicoChanges = (data) => {
-            console.log(data)
-          }
-          idiomaChanges = (data) => {
-            console.log(data)
-          }
-
           getArtesaniaModalData = (id) => {
-            let {fields} = artesaniasPorEstado.filter(artesania => artesania.id === id)[0]
+            let {fields} = artesanias.filter(artesania => artesania.id === id)[0]
             let finalHTMLGrupos = `Grupos étnicos:`
             let gruposDelArtesano = gruposEtnicos.filter(grupo => fields.artesano.grupo.indexOf(grupo.id) >= 0)
             let finalUrlArtesano
@@ -1176,7 +1243,7 @@
             artesanias = await getData('Artesania')
 
             artesanias.forEach(artesania => {
-
+              console.log(artesania)
               artesanosDisponibles.push(artesania.fields.Artesano[0])
               addPoint(artesania.fields.latitud, artesania.fields.longitud, artesania.fields.Artesania, artesania.id)
             })
