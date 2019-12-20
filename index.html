@@ -420,6 +420,11 @@
             margin: 0 !important;
           }
 
+          .features {
+            display: flex;
+            justify-content: space-between;
+          }
+
           .artesania, .lugar {
             background-repeat: no-repeat;
             background-size: cover !important;
@@ -529,9 +534,9 @@
             background: rgba(0,0,0,.2) !important;
           }
           .artesano-imagen {
-            width: 11rem;
+            width: 4rem;
             background-size: cover !important;
-            height: 11rem;
+            height: 4rem;
             background-position: center !important;
             border-radius: 50%;
           }
@@ -547,8 +552,8 @@
             flex-direction: column;
 
           }
-          .padding-left-3-rem {
-            padding-left: 3rem;
+          .padding-left-1-rem {
+            padding-left: 1rem;
           }
 
           .artesano-header {
@@ -557,21 +562,28 @@
           .name-artesania {
             font-size: 2rem;
             color: #3a3838;
-            margin-bottom: 2rem;
+            margin-bottom: 0;
           }
           .artesano-name {
-            font-size: 1.6rem;
+            font-size: .9rem;
             color: #5d5c5c;
+            font-weight: bold;
           }
           .tingle-modal-box__content {
             padding: 1rem 1rem !important;
           }
           .grupos-etnicos {
             display: flex;
+            color: black;
           }
 
           .ethnic-group {
             padding: 0 1rem;
+            background: #FF9800;
+            border-radius: 3px;
+            margin: 0 .4rem;
+            color: white;
+            box-shadow: 1px 1px 2px grey;
           }
 
           .artesano-bio {
@@ -582,6 +594,17 @@
 
           #buttons {
             display: flex;
+          }
+
+          .precio {
+            position: absolute;
+            top: 1rem;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: darkslategrey;
           }
 
           .artesano-content {
@@ -610,6 +633,31 @@
             font-size: 2rem;
             color: black;
             text-align: center;
+          }
+          .galleria {
+            width: 100%;
+            height: 400px;
+            background: #ffffff;
+          }
+          .galleria-theme-classic {
+            background: #fff !important;
+          }
+
+          .detalle-artesania {
+            margin: 1rem 0;
+            color: dimgrey;
+          }
+
+          .icon-feature {
+            color: slategrey;
+          }
+
+          h2.subtitle-artesania {
+            color: black;
+            text-transform: none;
+            margin: 1rem 0 !important;
+            letter-spacing: normal;
+            font-family: inherit;
           }
 
         </style>
@@ -645,15 +693,20 @@
           </div>
           <div class="container-interactive" id="map-tiamiqui"></div>
         </div>
+        <link rel=”stylesheet” type=”text/css” href=”https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/themes/fullscreen/galleria.classic.min.css” />
+
+
         <script src="https://www.amcharts.com/lib/4/core.js"></script>
         <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
         <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
         <script src="https://www.amcharts.com/lib/4/maps.js"></script>
         <script src="https://www.amcharts.com/lib/4/geodata/mexicoHigh.js"></script>
+        <script src="js/vendor/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
         <script src="js/vendor/airtable.browser.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.css" rel="stylesheet"></link>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.css" rel="stylesheet">
         <script src="js/vendor/tingle.min.js"></script>
         <script src="https://unpkg.com/popper.js@1"></script>
         <script src="https://unpkg.com/tippy.js@5"></script>
@@ -992,19 +1045,32 @@
             document.querySelector('#artesanias').innerHTML = getInformationForArtesanias(filterArtesania(data))
           }
 
-
+          let formatter = new Intl.NumberFormat('en-ES', {
+            style: 'currency',
+            currency: 'MXN',
+          });
 
           loadModal = (id, type = 1) => {
-            if (type === 2) {
-              // Lugar de elaboración
-              modal2.setContent(getLugarModalData(id))
-              modal2.open()
-            } else {
-              // Artesania
-              modal.setContent(getArtesaniaModalData(id))
-              modal.open()
-
-            }
+            modal.setContent(getArtesaniaModalData(id))
+            modal.open()
+            setTimeout(() => {
+              Galleria.loadTheme('https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/themes/classic/galleria.classic.min.js')
+              Galleria.run('.galleria', {
+                transition: "pulse",
+                thumbCrop: true,
+                imageCrop: true,
+                carousel: false,
+                imagePan: true,
+                clicknext: true,
+                _locale: {
+                  enter_fullscreen: "Enter fullscreen",
+                  exit_fullscreen: "Exit fullscreen",
+                  click_to_close: "Click to close",
+                  show_thumbnails: "Show thumbnails",
+                  show_info: "Show info"
+                }
+              })
+            }, 250)
             tippy('[data-tippy-content]')
           }
 
@@ -1055,7 +1121,7 @@
                   <div class="localidad-imagen" style="background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .1)),
                   url(${finalUrlLocalidad})"></div>
                 </div>
-                <div class="flex-column padding-left-3-rem">
+                <div class="flex-column padding-left-1-rem">
                   <div class="artesano-name">${fields.Localidad}</div>
                   <div class="artesano-bio">${fields.descripcion}</div>
                 </div>
@@ -1079,10 +1145,18 @@
 
           getArtesaniaModalData = (id) => {
             let {fields} = artesanias.filter(artesania => artesania.id === id)[0]
-            let finalHTMLGrupos = `Grupos étnicos:`
+            let finalHTMLGrupos = ``
             let gruposDelArtesano = gruposEtnicos.filter(grupo => fields.artesano.grupo.indexOf(grupo.id) >= 0)
-            let finalUrlArtesano
+            let finalUrlArtesano = ''
+            let imagenesArtesania = ''
             //let artesanoSeleccionado = getArtesanoByArtesania(artesaniaSeleccionada.fields.Artesano[0])
+            if (fields['imagen']) {
+              fields.imagen.forEach(imagenArtesania => {
+                imagenesArtesania += `<img src="${imagenArtesania.thumbnails.large.url}"/>`
+              })
+            } else {
+              imagenesArtesania = `<img src="https://source.unsplash.com/1600x900/?succulent,green,dark,table"/>`;
+            }
             if (fields.artesano['imagen']) {
               finalUrlArtesano = fields.artesano.imagen[0].thumbnails.large.url
             } else {
@@ -1095,25 +1169,48 @@
             return `
             <div>
               <div class="name-artesania">${fields.Artesania}</div>
-              <div>${fields.precio}</div>
+              <div class="galleria">
+                ${imagenesArtesania}
+              </div>
+              <div class="precio">${formatter.format(fields.precio)}</div>
             </div>
-            <div>
+            <div class="features">
+              <div class="grupos-etnicos">${finalHTMLGrupos}</div>
+              <div class="icon-feature">
+                <i class="fa fa-umbrella" aria-hidden="true"></i>
+                2kg
+              </div>
+              <div class="icon-feature">
+                <i class="fa fa-umbrella" aria-hidden="true"></i>
+                2m
+              </div>
+              <div class="icon-feature">
+                <i class="fa fa-umbrella" aria-hidden="true"></i>
+                1ml
+              </div>
+              <div class="icon-feature">
+                <i class="fa fa-umbrella" aria-hidden="true"></i>
+                1ml
+              </div>
+            </div>
+            <h2 class="subtitle-artesania">Detalles acerca de ${fields.Artesania}</h2>
+            <div class="detalle-artesania">
               ${fields.descripcionlarga}
             </div>
+            <h2 class="subtitle-artesania">Un mensaje del artesano</h2>
             <div class="info-artesano">
               <div class="artesano-header">
                 <div>
                   <div class="artesano-imagen" style="background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .1)),
                   url(${finalUrlArtesano})"></div>
                 </div>
-                <div class="flex-column padding-left-3-rem">
+                <div class="flex-column padding-left-1-rem">
                   <div class="artesano-name">${fields.artesano.Nombre}</div>
-                  <div class="artesano-bio">${fields.artesano.bio}</div>
+                  <div class="artesano-bio">${fields.mensaje ? fields.mensaje : '' }</div>
                 </div>
               </div>
               <div class="artesano-content">
                 <div></div>
-                <div class="grupos-etnicos">${finalHTMLGrupos}</div>
               </div>
             </div>
 
